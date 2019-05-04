@@ -37,6 +37,7 @@ HEADERS += src/playerinterface.h \
     src/Image/Filters/ComplexFiltes/blurlinearupsample.h \
     src/Image/Filters/defines.h \
     src/Image/Filters/OtherFilters/inverse.h
+
 SOURCES += src/playerinterface.cpp \
     src/openglwidget.cpp \
     src/main.cpp \

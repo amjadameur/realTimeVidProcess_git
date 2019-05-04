@@ -25,22 +25,24 @@
 #include "ComplexFiltes/doublecubicdownsample.h"
 #include "ComplexFiltes/blurlinearupsample.h"
 
-#define REDFILTER 0
-#define GREENFILTER                1
-#define BLUEFILTER                 2
-#define GREYFILTER                 3
-#define RELIABLEGREYFILTER         4
-#define DWSAMPLEFILTER             5
-#define LINEARDWSAMPLEFILTER       6
-#define CUBICDWSAMPLEFILTER        7
-#define UPSAMPLEFILTER             8
-#define LINEARUPSAMPLEFILTER       9
-#define CUBICUPSAMPLEFILTER        10
-#define BLURFILTER                 11
-#define AUTOADAPTFILTER            12
-#define INVERSEFILTER              13
-#define DOUBLECUBICDWSAMPLEFILTER  14
-#define BLURLINEARUPSAMPLEFILTER   15
+#define REDFILTER                  1
+#define GREENFILTER                2
+#define BLUEFILTER                 3
+#define GREYFILTER                 4
+#define RELIABLEGREYFILTER         5
+#define DWSAMPLEFILTER             6
+#define LINEARDWSAMPLEFILTER       7
+#define CUBICDWSAMPLEFILTER        8
+#define UPSAMPLEFILTER             9
+#define LINEARUPSAMPLEFILTER       10
+#define CUBICUPSAMPLEFILTER        11
+#define BLURFILTER                 12
+#define AUTOADAPTFILTER            13
+#define INVERSEFILTER              14
+#define DOUBLECUBICDWSAMPLEFILTER  15
+#define BLURLINEARUPSAMPLEFILTER   16
+
+#define NB_FILTERS 16
 
 class Filter {
 private :
@@ -68,19 +70,10 @@ private :
         BlurLinearUpSample       blurLinearUpSampleFilter;
 
 public :
+        Filter();
         void filter(int filterIdx, FastImage* previousBuffer2, FastImage* previousBuffer1, FastImage* bufferIn, FastImage* bufferOut);
+        void applySelectedFilters(int *fifo, FastImage* previousBuffer2, FastImage* previousBuffer1, FastImage* bufferIn, FastImage* bufferOut);
 };
-
-
-
-
-
-
-
-
-
-
-
 
 #endif // FILTER
 
