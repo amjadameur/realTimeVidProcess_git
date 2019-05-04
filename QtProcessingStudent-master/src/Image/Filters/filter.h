@@ -24,6 +24,21 @@
 #include "ComplexFiltes/doublecubicdownsample.h"
 #include "ComplexFiltes/blurlinearupsample.h"
 
+#define REDFILTER 0
+#define GREENFILTER                1
+#define BLUEFILTER                 2
+#define GREYFILTER                 3
+#define RELIABLEGREYFILTER         4
+#define DWSAMPLEFILTER             5
+#define LINEARDWSAMPLEFILTER       6
+#define CUBICDWSAMPLEFILTER        7
+#define UPSAMPLEFILTER             8
+#define LINEARUPSAMPLEFILTER       9
+#define CUBICUPSAMPLEFILTER        10
+#define BLURFILTER                 11
+#define AUTOADAPTFILTER            12
+#define DOUBLECUBICDWSAMPLEFILTER  13
+#define BLURLINEARUPSAMPLEFILTER   14
 
 class Filter {
 private :
@@ -37,20 +52,20 @@ private :
         ReliableGreyChannel      reliableGreyFilter;
 
         DownSample               dwSampleFilter;
-        LinearDownSample         LinearDwSampleFilter;
-        CubicDownSample          CubicDwSampleFilter;
+        LinearDownSample         linearDwSampleFilter;
+        CubicDownSample          cubicDwSampleFilter;
         UpSample                 upSampleFilter;
         LinearUpSample           linearUpSampleFilter;
-        CubicUpSample            CubicUpSampleFilter;
+        CubicUpSample            cubicUpSampleFilter;
 
         Blur                     blurFilter;
         AutoAdapt                autoAdaptFilter;
 
-        DoubleCubicDownSample    DoubleCubicDwSampleFilter;
+        DoubleCubicDownSample    doubleCubicDwSampleFilter;
         BlurLinearUpSample       blurLinearUpSampleFilter;
 
-
-
+public :
+        void filter(int filterIdx, FastImage* previousBuffer2, FastImage* previousBuffer1, FastImage* bufferIn, FastImage* bufferOut);
 };
 
 

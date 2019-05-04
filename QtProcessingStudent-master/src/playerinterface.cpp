@@ -64,6 +64,8 @@ PlayerInterface::PlayerInterface()
     _listeFiltres->addItem( "Blur Linear Up Sample");
     _isPlaying = false;
 
+    filters = new Filter();
+
     //
     // LE MODE WEBCAM EST DESACTIVE DANS CETTE VERSION DE L'OUTIL
     //
@@ -181,6 +183,7 @@ PlayerInterface::PlayerInterface()
     new QShortcut(Qt::Key_Space,        this, SLOT(startButton()));
     new QShortcut(Qt::Key_Escape,       this, SLOT(resetFilters()));
 
+
 }
 
 
@@ -194,6 +197,8 @@ PlayerInterface::~PlayerInterface()
     delete bufferTmp2;
     delete bufferIn;
     delete bufferOut;
+
+    delete filters;
 
 }
 
@@ -284,6 +289,8 @@ void PlayerInterface::drawNextFrame()
         usleep(2*ms);
 */
                 // SINON ON FAIT AUTRECHOSE...
+    } else {
+        filters->filter(_listeFiltres->currentIndex()-2, bufferTmp2, bufferTmp1, bufferIn, bufferOut);
     }
     // Inverse Filter
     /*else if (_listeFiltres->currentIndex() == 1) {
@@ -294,6 +301,7 @@ void PlayerInterface::drawNextFrame()
     }*/
 
     // RGB Channels
+    /*
     else if (_listeFiltres->currentIndex() == 2) {
         RedChannel* redFilter = new RedChannel();
         redFilter->filter(bufferIn, bufferOut);
@@ -376,6 +384,7 @@ void PlayerInterface::drawNextFrame()
         delete blurLinearUpSampleFilter;
     }
 
+*/
 
 
     //

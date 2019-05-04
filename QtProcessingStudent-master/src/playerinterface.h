@@ -115,7 +115,7 @@ class PlayerInterface : public QWidget
     FastImage *bufferTmp2;
     FastImage *bufferOut;
 
-
+    Filter* filters;
 
 public:
     PlayerInterface();
