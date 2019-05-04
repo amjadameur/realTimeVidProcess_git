@@ -250,6 +250,8 @@ void PlayerInterface::drawNextFrame()
         }
     }
 
+
+
     //
     // AFFICHAGE DU TEMPS NECESSAIRE A L'EXTRATION DE l'IMAGE
     //

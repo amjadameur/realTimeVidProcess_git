@@ -1,30 +1,58 @@
-#include <iostream>
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
-#include "../FImage.h"
-
-using namespace std;
-
 #ifndef FILTER
 #define FILTER
 
-#define imInR(y, x) ((float)bufferIn->Red(y, x))
-#define imInG(y, x) ((float)bufferIn->Green(y, x))
-#define imInB(y, x) ((float)bufferIn->Blue(y, x))
+// Linear filters
+#include "LinearFilters/redchannel.h"
+#include "LinearFilters/greenchannel.h"
+#include "LinearFilters/bluechannel.h"
+#include "LinearFilters/greychannel.h"
+#include "LinearFilters/reliablegreychannel.h"
 
-#define imOutR(y, x, v) bufferOut->Red(y, x, v)
-#define imOutG(y, x, v) bufferOut->Green(y, x, v)
-#define imOutB(y, x, v) bufferOut->Blue(y, x, v)
+// Sampling filters
+#include "SamplingFilters/downsample.h"
+#include "SamplingFilters/lineardownsample.h"
+#include "SamplingFilters/cubicdownsample.h"
+#include "SamplingFilters/upsample.h"
+#include "SamplingFilters/linearupsample.h"
+#include "SamplingFilters/cubicupsample.h"
 
-/*
+// Other Filters
+#include "OtherFilters/blur.h"
+#include "OtherFilters/autoadapt.h"
+
+// Complex filters
+#include "ComplexFiltes/doublecubicdownsample.h"
+#include "ComplexFiltes/blurlinearupsample.h"
+
+
 class Filter {
+private :
+        FastImage* tmp1;
+        FastImage* tmp2;
 
-public :
+        RedChannel               redFilter;
+        GreenChannel             greenFilter;
+        BlueChannel              blueFilter;
+        GreyChannel              greyFilter;
+        ReliableGreyChannel      reliableGreyFilter;
 
-    void adjustImDimensions(FastImage* bufferIn, FastImage* bufferOut);
-    void bufferOutToBufferIn(FastImage* bufferIn, FastImage* bufferOut);
+        DownSample               dwSampleFilter;
+        LinearDownSample         LinearDwSampleFilter;
+        CubicDownSample          CubicDwSampleFilter;
+        UpSample                 upSampleFilter;
+        LinearUpSample           linearUpSampleFilter;
+        CubicUpSample            CubicUpSampleFilter;
+
+        Blur                     blurFilter;
+        AutoAdapt                autoAdaptFilter;
+
+        DoubleCubicDownSample    DoubleCubicDwSampleFilter;
+        BlurLinearUpSample       blurLinearUpSampleFilter;
+
+
+
 };
-*/
+
 
 
 

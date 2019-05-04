@@ -1,4 +1,4 @@
-#include "../filter.h"
+#include "../defines.h"
 
 #ifndef LINEARFILTER
 #define LINEARFILTER
