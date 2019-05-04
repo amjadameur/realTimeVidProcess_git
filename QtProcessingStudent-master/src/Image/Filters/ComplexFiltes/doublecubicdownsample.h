@@ -1,7 +1,7 @@
-#include "../SamplingFilters/cubicdownsample.h"
-
 #ifndef DOUBLECUBICDOWNSAMPLE
 #define DOUBLECUBICDOWNSAMPLE
+
+#include "../SamplingFilters/cubicdownsample.h"
 
 class DoubleCubicDownSample {
 protected :

@@ -1,13 +1,14 @@
-#ifndef AUTOADAPT
-#define AUTOADAPT
+#ifndef INVERSE
+#define INVERSE
 
 #include "../defines.h"
 
-class AutoAdapt {
+class Inverse {
 
 public :
     void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
-#endif // AUTOADAPT
+
+#endif // INVERSE
 

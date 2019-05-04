@@ -46,6 +46,7 @@
 // Other Filters
 #include "./Image/Filters/OtherFilters/blur.h"
 #include "./Image/Filters/OtherFilters/autoadapt.h"
+#include "./Image/Filters/OtherFilters/inverse.h"
 
 // Complex filters
 #include "./Image/Filters/ComplexFiltes/doublecubicdownsample.h"

@@ -1,8 +1,7 @@
-#include "../defines.h"
-
 #ifndef BLUR
 #define BLUR
 
+#include "../defines.h"
 
 class Blur {
 

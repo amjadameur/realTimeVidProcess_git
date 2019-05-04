@@ -1,10 +1,10 @@
+#ifndef BLURLINEARUPSAMPLE
+#define BLURLINEARUPSAMPLE
+
 #include "../SamplingFilters/linearupsample.h"
 #include "../SamplingFilters/lineardownsample.h"
 #include "../LinearFilters/reliablegreychannel.h"
 #include "../OtherFilters/blur.h"
-
-#ifndef BLURLINEARUPSAMPLE
-#define BLURLINEARUPSAMPLE
 
 class BlurLinearUpSample  {
 protected :    

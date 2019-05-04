@@ -35,7 +35,8 @@ HEADERS += src/playerinterface.h \
     src/Image/Filters/OtherFilters/autoadapt.h \
     src/Image/Filters/ComplexFiltes/doublecubicdownsample.h \
     src/Image/Filters/ComplexFiltes/blurlinearupsample.h \
-    src/Image/Filters/defines.h
+    src/Image/Filters/defines.h \
+    src/Image/Filters/OtherFilters/inverse.h
 SOURCES += src/playerinterface.cpp \
     src/openglwidget.cpp \
     src/main.cpp \
@@ -58,6 +59,7 @@ SOURCES += src/playerinterface.cpp \
     src/Image/Filters/OtherFilters/blur.cpp \
     src/Image/Filters/OtherFilters/autoadapt.cpp \
     src/Image/Filters/ComplexFiltes/doublecubicdownsample.cpp \
-    src/Image/Filters/ComplexFiltes/blurlinearupsample.cpp
+    src/Image/Filters/ComplexFiltes/blurlinearupsample.cpp \
+    src/Image/Filters/OtherFilters/inverse.cpp
 RESOURCES +=
 FORMS +=

@@ -19,6 +19,7 @@
 // Other Filters
 #include "OtherFilters/blur.h"
 #include "OtherFilters/autoadapt.h"
+#include "OtherFilters/inverse.h"
 
 // Complex filters
 #include "ComplexFiltes/doublecubicdownsample.h"
@@ -37,8 +38,9 @@
 #define CUBICUPSAMPLEFILTER        10
 #define BLURFILTER                 11
 #define AUTOADAPTFILTER            12
-#define DOUBLECUBICDWSAMPLEFILTER  13
-#define BLURLINEARUPSAMPLEFILTER   14
+#define INVERSEFILTER              13
+#define DOUBLECUBICDWSAMPLEFILTER  14
+#define BLURLINEARUPSAMPLEFILTER   15
 
 class Filter {
 private :
@@ -60,6 +62,7 @@ private :
 
         Blur                     blurFilter;
         AutoAdapt                autoAdaptFilter;
+        Inverse                  inverseFilter;
 
         DoubleCubicDownSample    doubleCubicDwSampleFilter;
         BlurLinearUpSample       blurLinearUpSampleFilter;

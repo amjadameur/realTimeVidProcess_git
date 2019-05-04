@@ -43,7 +43,6 @@ PlayerInterface::PlayerInterface()
     // DECLARATION DE TOUS LES PLUGINS DE TRAITEMENT VIDEO
     //
     _listeFiltres->addItem( "None" );
-    _listeFiltres->addItem( "Inverse" );
     _listeFiltres->addItem( "Red Channel" );
     _listeFiltres->addItem( "Green Channel" );
     _listeFiltres->addItem( "Blue Channel" );
@@ -59,6 +58,7 @@ PlayerInterface::PlayerInterface()
 
     _listeFiltres->addItem( "Blur");
     _listeFiltres->addItem( "Auto Adapt");
+    _listeFiltres->addItem( "Inverse");
 
     _listeFiltres->addItem( "Double Cubic Down Sample");
     _listeFiltres->addItem( "Blur Linear Up Sample");
@@ -290,7 +290,7 @@ void PlayerInterface::drawNextFrame()
 */
                 // SINON ON FAIT AUTRECHOSE...
     } else {
-        filters->filter(_listeFiltres->currentIndex()-2, bufferTmp2, bufferTmp1, bufferIn, bufferOut);
+        filters->filter(_listeFiltres->currentIndex()-1, bufferTmp2, bufferTmp1, bufferIn, bufferOut);
     }
     // Inverse Filter
     /*else if (_listeFiltres->currentIndex() == 1) {

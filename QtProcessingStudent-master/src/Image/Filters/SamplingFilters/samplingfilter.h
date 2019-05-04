@@ -1,8 +1,8 @@
-#include "../defines.h"
-#include <cmath>
-
 #ifndef SAMPLINGFILTER
 #define SAMPLINGFILTER
+
+#include "../defines.h"
+#include <cmath>
 
 class SamplingFilter {
 

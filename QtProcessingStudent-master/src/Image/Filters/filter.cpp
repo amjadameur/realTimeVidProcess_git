@@ -56,6 +56,10 @@ void Filter::filter(int filterIdx, FastImage* previousBuffer2, FastImage* previo
             autoAdaptFilter.filter(bufferIn, bufferOut);
             break;
 
+        case INVERSEFILTER :
+            inverseFilter.filter(bufferIn, bufferOut);
+            break;
+
         case DOUBLECUBICDWSAMPLEFILTER :
             doubleCubicDwSampleFilter.filter(bufferIn, bufferOut);
             break;
