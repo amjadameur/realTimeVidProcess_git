@@ -1,8 +1,12 @@
 #include "filter.h"
 
+Filter::Filter() {
+    tmp1 = new FastImage(2, 2);
+    tmp2 = new FastImage(2, 2);
+}
 
 void Filter::filter(int filterIdx, FastImage* previousBuffer2, FastImage* previousBuffer1, FastImage* bufferIn, FastImage* bufferOut) {
-//redFilter.filter(bufferIn, bufferOut);
+
     switch(filterIdx) {
         case REDFILTER :
             redFilter.filter(bufferIn, bufferOut);
@@ -68,5 +72,18 @@ void Filter::filter(int filterIdx, FastImage* previousBuffer2, FastImage* previo
             blurLinearUpSampleFilter.filter(previousBuffer2, previousBuffer1, bufferIn, bufferOut);
             break;
     }
+}
 
+void Filter::applySelectedFilters(int *fifo, FastImage* previousBuffer2, FastImage* previousBuffer1,
+                                  FastImage* bufferIn, FastImage* bufferOut) {
+    tmp1->FastImageCpy(bufferIn);
+    tmp2->FastImageCpy(bufferIn);
+
+    for (int i = 0; i<NB_FILTERS; i++) {
+        if (fifo[i] != 0) {
+            filter(fifo[i], previousBuffer2, previousBuffer1, tmp1, tmp2);
+            tmp1->FastImageCpy(tmp2);
+        }
+    }
+    bufferOut->FastImageCpy(tmp2);
 }
