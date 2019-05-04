@@ -118,18 +118,36 @@ PlayerInterface::PlayerInterface()
     QGroupBox   *pp = new QGroupBox(tr("Processing informations"));
     QVBoxLayout *pt = new QVBoxLayout;
     dTime  = new QLabel(tr("Video width"));
-    pTime = new QLabel(tr("Video width"));
-    sTime = new QLabel(tr("Video width"));
+    pTime  = new QLabel(tr("Video width"));
+    sTime  = new QLabel(tr("Video width"));
     pt->addWidget( dTime  );
     pt->addWidget( pTime );
     pt->addWidget( sTime );
     pp->setLayout(pt);
+
+
+    ////////////////////////////////////////////////////////////////
+    /// Mine :
+    QGroupBox   *myWidget = new QGroupBox(tr("My Group Box"));
+    QVBoxLayout *myBox = new QVBoxLayout;
+    filter1  = new QLabel(tr("filter 1"));
+    filter2  = new QLabel(tr("filter 2"));
+    myBox->addWidget( filter1  );
+    myBox->addWidget( filter2  );
+    myWidget->setLayout(myBox);
+
+    fifo = new int[NB_FILTERS];
+    for(int i = 0; i<NB_FILTERS; i++) {
+        fifo[i] = 0;
+    }
+    /////////////////////////////////////////////////////////////////
 
     l4->addWidget(g1);
     l4->addWidget(g2);
     l4->addWidget(g3);
     l4->addWidget(g4);
     l4->addWidget(pp);
+    l4->addWidget(myWidget);
 
     layout->addLayout(l4);
 
@@ -277,114 +295,20 @@ void PlayerInterface::drawNextFrame()
     //QString value = _listeFiltres->currentText();
 
     // EN FONCTION DU CHOIX FAIT DANS LA LISTE ON FAIT UN TRUC ?!
-    if( _listeFiltres->currentIndex() == 0 ){
+    if(fifo[0] == 0){
         bufferOut->FastImageCpy(bufferIn);
-        /*
-        if( bufferOut->width() != bufferIn->width() || bufferOut->height() != bufferIn->height() ){
-            bufferOut->resize(bufferIn->height(), bufferIn->width());
-        }
-        bufferOut->FastCopyTo( bufferIn );
-    */
-/*  unsigned int ms = 1000;
-        usleep(2*ms);
-*/
-                // SINON ON FAIT AUTRECHOSE...
+    } else {
+        filters->applySelectedFilters(fifo, bufferTmp2, bufferTmp1, bufferIn, bufferOut);
+    }
+
+
+    /*if( _listeFiltres->currentIndex() == 0 ){
+        bufferOut->FastImageCpy(bufferIn);
+
     } else {
         filters->filter(_listeFiltres->currentIndex()-1, bufferTmp2, bufferTmp1, bufferIn, bufferOut);
-    }
-    // Inverse Filter
-    /*else if (_listeFiltres->currentIndex() == 1) {
-        LinearFilter* invFilter = new LinearFilter(bufferIn, bufferOut);
-        invFilter->inverse();
-        invFilter->exportImOut(bufferOut);
-        delete invFilter;
     }*/
 
-    // RGB Channels
-    /*
-    else if (_listeFiltres->currentIndex() == 2) {
-        RedChannel* redFilter = new RedChannel();
-        redFilter->filter(bufferIn, bufferOut);
-        delete redFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 3) {
-        GreenChannel* greenFilter = new GreenChannel();
-        greenFilter->filter(bufferIn, bufferOut);
-        delete greenFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 4) {
-        BlueChannel* blueFilter = new BlueChannel();
-        blueFilter->filter(bufferIn, bufferOut);
-        delete blueFilter;
-    }
-
-    // Grey scale filters
-    else if (_listeFiltres->currentIndex() == 5) {
-        GreyChannel* greyFilter = new GreyChannel();
-        greyFilter->filter(bufferIn, bufferOut);
-        delete greyFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 6) {
-        ReliableGreyChannel* reliableGreyFilter = new ReliableGreyChannel();
-        reliableGreyFilter->filter(bufferIn, bufferOut);
-        delete reliableGreyFilter;
-    }
-
-    // Down Sampling filters
-    else if (_listeFiltres->currentIndex() == 7) {
-        DownSample* dwSampleFilter = new DownSample();
-        dwSampleFilter->filter(bufferIn, bufferOut);
-        delete dwSampleFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 8) {
-        LinearDownSample* LinearDwSampleFilter = new LinearDownSample();
-        LinearDwSampleFilter->filter(bufferIn, bufferOut);
-        delete LinearDwSampleFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 9) {
-        CubicDownSample* CubicDwSampleFilter = new CubicDownSample();
-        CubicDwSampleFilter->filter(bufferIn, bufferOut);
-        delete CubicDwSampleFilter;
-    }
-
-    // Upsampling Filters
-    else if (_listeFiltres->currentIndex() == 10) {
-        UpSample* upSampleFilter = new UpSample();
-        upSampleFilter->filter(bufferIn, bufferOut);
-        delete upSampleFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 11) {
-        LinearUpSample* linearUpSampleFilter = new LinearUpSample();
-        linearUpSampleFilter->filter(bufferIn, bufferOut);
-        delete linearUpSampleFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 12) {
-        CubicUpSample* CubicUpSampleFilter = new CubicUpSample();
-        CubicUpSampleFilter->filter(bufferIn, bufferOut);
-        delete CubicUpSampleFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 13) {
-        Blur* blurFilter = new Blur();
-        blurFilter->filter(bufferTmp2, bufferTmp1, bufferIn, bufferOut);
-        delete blurFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 14) {
-        AutoAdapt* autoAdaptFilter = new AutoAdapt();
-        autoAdaptFilter->filter(bufferIn, bufferOut);
-        delete autoAdaptFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 15) {
-        DoubleCubicDownSample* DoubleCubicDwSampleFilter = new DoubleCubicDownSample();
-        DoubleCubicDwSampleFilter->filter(bufferIn, bufferOut);
-        delete DoubleCubicDwSampleFilter;
-    }
-    else if (_listeFiltres->currentIndex() == 16) {
-        BlurLinearUpSample* blurLinearUpSampleFilter = new BlurLinearUpSample();
-        blurLinearUpSampleFilter->filter(bufferTmp2, bufferTmp1, bufferIn, bufferOut);
-        delete blurLinearUpSampleFilter;
-    }
-
-*/
 
 
     //
@@ -482,6 +406,14 @@ void PlayerInterface::openFile(QString* name)
 void PlayerInterface::changePosition(int newPosition)
 {
     cout << "(II) Un changement de filtre a ete enregistre... (" << newPosition << ")"  << endl;
+    for(int i = 0; i<NB_FILTERS; i++) {
+        if (fifo[i] == 0) {
+            fifo[i] = newPosition;
+            filter1->setText( tr("filter 1 : ") + QVariant(fifo[0]).toString() );
+            filter2->setText( tr("filter 2 : ") + QVariant(fifo[1]).toString() );
+            break;
+        }
+    }
     if( _isPlaying == true ) return;
     drawNextFrame();
 }

@@ -78,6 +78,13 @@ class PlayerInterface : public QWidget
     QLabel *pTime;
     QLabel *sTime;
 
+    ////////////////////// to be discarded
+    QLabel *filter1;
+    QLabel *filter2;
+
+    int* fifo;
+    //////////////////////////////////////
+
     // VARIABLE UTILISEE AFIN DE MINIMISER LE NOMBRE DE MISES A JOUR DE
     // L'INTERFACE GRAPHIQUE.
     int _inWidth;
