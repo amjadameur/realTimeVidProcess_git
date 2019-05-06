@@ -1,0 +1,5 @@
+
+button->setGeometry(x, y, buttonWidth, buttonHeight);
+
+The constructor of PlayerInterface, calls the constructor of QWidget, it initializes a window,
+then the method setLayout of QWidget sets the constracted layout as the layout manager of the window.
