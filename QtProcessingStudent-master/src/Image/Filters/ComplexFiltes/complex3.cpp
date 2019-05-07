@@ -1,4 +1,4 @@
-#include "blurlinearupsample.h"
+#include "complex3.h"
 
 BlurLinearUpSample::BlurLinearUpSample() {
     //tmpIn = new FastImage(2, 2);

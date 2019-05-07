@@ -81,7 +81,7 @@ class PlayerInterface : public QWidget
     ////////////////////// to be discarded
     QLabel *filter1;
     QLabel *filter2;
-    Blur *filterTmp;
+    Blur *blurFilter;
 
     int* fifo;
     //////////////////////////////////////
@@ -124,7 +124,6 @@ class PlayerInterface : public QWidget
     FastImage *bufferTmp2;
     FastImage *bufferOut;
 
-    Filter* filters;
 
 public:
     PlayerInterface();

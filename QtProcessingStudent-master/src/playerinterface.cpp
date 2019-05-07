@@ -64,8 +64,6 @@ PlayerInterface::PlayerInterface()
     _listeFiltres->addItem( "Blur Linear Up Sample");
     _isPlaying = false;
 
-    filters = new Filter();
-
     //
     // LE MODE WEBCAM EST DESACTIVE DANS CETTE VERSION DE L'OUTIL
     //
@@ -135,7 +133,7 @@ PlayerInterface::PlayerInterface()
     myBox->addWidget( filter1  );
     myBox->addWidget( filter2  );
     myWidget->setLayout(myBox);
-    filterTmp = new Blur();
+    blurFilter = new Blur();
 
     fifo = new int[NB_FILTERS];
     for(int i = 0; i<NB_FILTERS; i++) {
@@ -217,8 +215,7 @@ PlayerInterface::~PlayerInterface()
     delete bufferIn;
     delete bufferOut;
 
-    delete filters;
-
+    delete blurFilter;
 }
 
 
@@ -283,32 +280,13 @@ void PlayerInterface::drawNextFrame()
 
     startC = clock(); // ON RELANCE LE COMPTEUR...
 
-    // Updating previous frames' list
-  /*  if (decodedFrames == 1) {
-        bufferTmp1 = new FastImage(bufferIn);
-        bufferTmp2 = new FastImage(bufferIn);
-    } else {
-        bufferTmp2->FastImageCpy(bufferTmp1);
-        bufferTmp1->FastImageCpy(bufferIn);
-    }
-*/
 
-    //QString value = _listeFiltres->currentText();
-
-    // EN FONCTION DU CHOIX FAIT DANS LA LISTE ON FAIT UN TRUC ?!
-
-    /* if(fifo[0] == 0){
-        bufferOut->FastImageCpy(bufferIn);
-    } else {
-        filters->applySelectedFilters(fifo, bufferTmp2, bufferTmp1, bufferIn, bufferOut);
-    }
-*/
 
    if( _listeFiltres->currentIndex() == 0 ){
         bufferOut->FastImageCpy(bufferIn);
 
     } else {
-        filterTmp->filter(bufferIn, bufferOut);
+        blurFilter->filter(bufferIn, bufferOut);
     }
 
 
