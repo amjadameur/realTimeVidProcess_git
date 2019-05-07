@@ -8,4 +8,4 @@ QHBoxLayout : lines up widgets horizontally
 QVBoxLayout : lines up widgets vertically
 
 signal : is a message that an object can send, most of the time to inform of a status change.
-slot   : is a function that is used to accept and respond to a signal.
+slot   	: is a function that is used to accept and respond to a signal.

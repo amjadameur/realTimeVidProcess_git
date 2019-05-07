@@ -135,6 +135,7 @@ PlayerInterface::PlayerInterface()
     myWidget->setLayout(myBox);
     blurFilter = new Blur();
     c3 = new Complex3(blurFilter);
+    //upSampleFilter = new UpSample();
 
     /*fifo = new int[NB_FILTERS];
     for(int i = 0; i<NB_FILTERS; i++) {
@@ -218,6 +219,7 @@ PlayerInterface::~PlayerInterface()
 
     delete blurFilter;
     delete c3;
+    //delete upSampleFilter;
 }
 
 
@@ -288,7 +290,9 @@ void PlayerInterface::drawNextFrame()
         bufferOut->FastImageCpy(bufferIn);
 
     } else {
-        blurFilter->filter(bufferIn, bufferOut);
+        UpSample *sampleFilter = new UpSample();
+        sampleFilter->filter(bufferIn, bufferOut);
+        delete sampleFilter;
     }
 
 

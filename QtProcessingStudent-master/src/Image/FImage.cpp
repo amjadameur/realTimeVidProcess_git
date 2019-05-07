@@ -48,7 +48,6 @@ int FastImage::height(){
     return hauteur;
 }
 
-
 int FastImage::width(){
     return largeur;
 }

@@ -83,6 +83,7 @@ class PlayerInterface : public QWidget
     QLabel *filter2;
     Blur *blurFilter;
     Complex3* c3;
+    //UpSample* upSampleFilter;
 
     int* fifo;
     //////////////////////////////////////

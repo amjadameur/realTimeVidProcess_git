@@ -6,7 +6,9 @@
 #include "../SamplingFilters/cubicdownsample.h"
 
 class Complex1 {
-protected :
+private :
+    FastImage *tmpIn;
+
     CubicDownSample cubicDownSampleFilter;
 
 public :
