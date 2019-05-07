@@ -11,6 +11,9 @@ public :
     Blur();
     ~Blur();
     void refreshPrevIm(FastImage* bufferIn);
+
+
+    bool differentImSizes(FastImage *bufferIn);
     void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
