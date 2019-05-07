@@ -11,9 +11,9 @@ void CubicUpSample::filter(FastImage* bufferIn, FastImage* bufferOut) {
 
             for(int i = 0; i<2; i++) {
                 for(int j = 0; j<2; j++) {
-                    rVal = imInR(y+i, x+i)*imInR(y+i, x+i);
-                    gVal = imInG(y+i, x+i)*imInG(y+i, x+i);
-                    bVal = imInB(y+i, x+i)*imInB(y+i, x+i);
+                    rVal += imInR(y+i, x+i)*imInR(y+i, x+i);
+                    gVal += imInG(y+i, x+i)*imInG(y+i, x+i);
+                    bVal += imInB(y+i, x+i)*imInB(y+i, x+i);
                 }
             }
 
