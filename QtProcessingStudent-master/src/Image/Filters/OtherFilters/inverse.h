@@ -1,7 +1,7 @@
 #ifndef INVERSE
 #define INVERSE
 
-#include "../defines.h"
+#include "../filter.h"
 
 class Inverse {
 

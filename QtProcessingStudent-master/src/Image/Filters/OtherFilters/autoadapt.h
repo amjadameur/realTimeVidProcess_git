@@ -1,7 +1,7 @@
 #ifndef AUTOADAPT
 #define AUTOADAPT
 
-#include "../defines.h"
+#include "../filter.h"
 
 class AutoAdapt {
 

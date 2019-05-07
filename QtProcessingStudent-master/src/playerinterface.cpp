@@ -134,11 +134,12 @@ PlayerInterface::PlayerInterface()
     myBox->addWidget( filter2  );
     myWidget->setLayout(myBox);
     blurFilter = new Blur();
+    c3 = new Complex3(blurFilter);
 
-    fifo = new int[NB_FILTERS];
+    /*fifo = new int[NB_FILTERS];
     for(int i = 0; i<NB_FILTERS; i++) {
         fifo[i] = 0;
-    }
+    }*/
     /////////////////////////////////////////////////////////////////
 
     l4->addWidget(g1);
@@ -216,6 +217,7 @@ PlayerInterface::~PlayerInterface()
     delete bufferOut;
 
     delete blurFilter;
+    delete c3;
 }
 
 
@@ -280,7 +282,7 @@ void PlayerInterface::drawNextFrame()
 
     startC = clock(); // ON RELANCE LE COMPTEUR...
 
-
+   blurFilter->refreshPrevIm(bufferIn);
 
    if( _listeFiltres->currentIndex() == 0 ){
         bufferOut->FastImageCpy(bufferIn);
@@ -386,14 +388,14 @@ void PlayerInterface::openFile(QString* name)
 void PlayerInterface::changePosition(int newPosition)
 {
     cout << "(II) Un changement de filtre a ete enregistre... (" << newPosition << ")"  << endl;
-    for(int i = 0; i<NB_FILTERS; i++) {
+   /* for(int i = 0; i<NB_FILTERS; i++) {
         if (fifo[i] == 0) {
             fifo[i] = newPosition;
             filter1->setText( tr("filter 1 : ") + QVariant(fifo[0]).toString() );
             filter2->setText( tr("filter 2 : ") + QVariant(fifo[1]).toString() );
             break;
         }
-    }
+    }*/
     if( _isPlaying == true ) return;
     drawNextFrame();
 }

@@ -1,9 +1,11 @@
-#ifndef DOUBLECUBICDOWNSAMPLE
-#define DOUBLECUBICDOWNSAMPLE
+#ifndef COMPLEX1
+#define COMPLEX1
+
+#include "../filter.h"
 
 #include "../SamplingFilters/cubicdownsample.h"
 
-class DoubleCubicDownSample {
+class Complex1 {
 protected :
     CubicDownSample cubicDownSampleFilter;
 

@@ -33,9 +33,8 @@ HEADERS += src/playerinterface.h \
     src/Image/Filters/SamplingFilters/cubicupsample.h \
     src/Image/Filters/OtherFilters/blur.h \
     src/Image/Filters/OtherFilters/autoadapt.h \
-    src/Image/Filters/ComplexFiltes/complex1.h \
-    src/Image/Filters/ComplexFiltes/complex3.h \
-    src/Image/Filters/defines.h \
+    src/Image/Filters/ComplexFilters/complex1.h \
+    src/Image/Filters/ComplexFilters/complex3.h \
     src/Image/Filters/OtherFilters/inverse.h
 
 SOURCES += src/playerinterface.cpp \
@@ -59,8 +58,8 @@ SOURCES += src/playerinterface.cpp \
     src/Image/Filters/SamplingFilters/cubicupsample.cpp \
     src/Image/Filters/OtherFilters/blur.cpp \
     src/Image/Filters/OtherFilters/autoadapt.cpp \
-    src/Image/Filters/ComplexFiltes/complex1.cpp \
-    src/Image/Filters/ComplexFiltes/complex3.cpp \
+    src/Image/Filters/ComplexFilters/complex1.cpp \
+    src/Image/Filters/ComplexFilters/complex3.cpp \
     src/Image/Filters/OtherFilters/inverse.cpp
 RESOURCES +=
 FORMS +=

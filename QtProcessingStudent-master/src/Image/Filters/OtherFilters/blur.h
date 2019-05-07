@@ -1,7 +1,7 @@
 #ifndef BLUR
 #define BLUR
 
-#include "../defines.h"
+#include "../filter.h"
 
 class Blur {
     FastImage *prevIm1;
@@ -9,6 +9,7 @@ class Blur {
 public :
     Blur();
     ~Blur();
+    void refreshPrevIm(FastImage* bufferIn);
     void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 

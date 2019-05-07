@@ -10,14 +10,20 @@ Blur::~Blur() {
     delete prevIm2;
 }
 
-void Blur::filter(FastImage *bufferIn, FastImage *bufferOut) {
+void Blur::refreshPrevIm(FastImage *bufferIn) {
     if(prevIm2 == NULL) {
         prevIm2 = new FastImage(bufferIn);
-        bufferOut->FastImageCpy(bufferIn);
-
     }
     else if(prevIm1 == NULL) {
         prevIm1 = new FastImage(bufferIn);
+    } else {
+        prevIm2->FastImageCpy(prevIm1);
+        prevIm1->FastImageCpy(bufferIn);
+    }
+}
+
+void Blur::filter(FastImage *bufferIn, FastImage *bufferOut) {
+    if(prevIm2 == NULL || prevIm2 == NULL) {
         bufferOut->FastImageCpy(bufferIn);
 
     } else {
@@ -33,8 +39,6 @@ void Blur::filter(FastImage *bufferIn, FastImage *bufferOut) {
                 imOutB(y, x, bVal);
             }
         }
-        prevIm2->FastImageCpy(prevIm1);
-        prevIm1->FastImageCpy(bufferIn);
     }
 }
 

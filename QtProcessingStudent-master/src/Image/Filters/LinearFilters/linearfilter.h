@@ -1,7 +1,7 @@
 #ifndef LINEARFILTER
 #define LINEARFILTER
 
-#include "../defines.h"
+#include "../filter.h"
 
 class LinearFilter {
 protected :

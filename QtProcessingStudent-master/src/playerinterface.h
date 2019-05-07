@@ -49,8 +49,8 @@
 #include "./Image/Filters/OtherFilters/inverse.h"
 
 // Complex filters
-#include "./Image/Filters/ComplexFiltes/doublecubicdownsample.h"
-#include "./Image/Filters/ComplexFiltes/blurlinearupsample.h"
+#include "./Image/Filters/ComplexFilters/complex1.h"
+#include "./Image/Filters/ComplexFilters/complex3.h"
 
 #define POSITION_RESOLUTION 10000
 
@@ -82,6 +82,7 @@ class PlayerInterface : public QWidget
     QLabel *filter1;
     QLabel *filter2;
     Blur *blurFilter;
+    Complex3* c3;
 
     int* fifo;
     //////////////////////////////////////
