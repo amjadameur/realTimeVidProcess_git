@@ -10,20 +10,13 @@ void UpSample::filter(FastImage* bufferIn, FastImage* bufferOut) {
             gVal = imInG(y, x);
             bVal = imInB(y, x);
 
-            tmpOutR(2*y    , 2*x    , rVal);
-            tmpOutR(2*y    , 2*(x+1), rVal);
-            tmpOutR(2*(y+1), 2*x    , rVal);
-            tmpOutR(2*(y+1), 2*(x+1), rVal);
-
-            tmpOutG(2*y    , 2*x    , gVal);
-            tmpOutG(2*y    , 2*(x+1), gVal);
-            tmpOutG(2*(y+1), 2*x    , gVal);
-            tmpOutG(2*(y+1), 2*(x+1), gVal);
-
-            tmpOutB(2*y    , 2*x    , bVal);
-            tmpOutB(2*y    , 2*(x+1), bVal);
-            tmpOutB(2*(y+1), 2*x    , bVal);
-            tmpOutB(2*(y+1), 2*(x+1), bVal);
+            for(int i = 0; i<2; i++) {
+                for(int j = 0; j<2; j++) {
+                    tmpOutR(2*y+i, 2*x+j, rVal);
+                    tmpOutG(2*y+i, 2*x+j, gVal);
+                    tmpOutB(2*y+i, 2*x+j, bVal);
+                }
+            }
         }
     }
     bufferOut->FastImagePointer(tmpOut);

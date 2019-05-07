@@ -7,19 +7,21 @@ void CubicDownSample::filter(FastImage* bufferIn, FastImage* bufferOut) {
 
     for(int y=0; y<tmpOut->height(); y++){
         for(int x=0; x<tmpOut->width(); x++){
+            rVal = 0;
+            gVal = 0;
+            bVal = 0;
 
-            int rSquared = 0, gSquared = 0, bSquared = 0;
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j<2; j++) {
-                    rSquared  = imInR(2*y+i, 2*x+j)*imInR(2*y+i, 2*x+j);
-                    gSquared  = imInG(2*y+i, 2*x+j)*imInG(2*y+i, 2*x+j);
-                    bSquared  = imInB(2*y+i, 2*x+j)*imInB(2*y+i, 2*x+j);
+                    rVal  = imInR(2*y+i, 2*x+j)*imInR(2*y+i, 2*x+j);
+                    gVal  = imInG(2*y+i, 2*x+j)*imInG(2*y+i, 2*x+j);
+                    bVal  = imInB(2*y+i, 2*x+j)*imInB(2*y+i, 2*x+j);
                 }
             }
 
-            rVal = (int) sqrt(rSquared/4);
-            gVal = (int) sqrt(gSquared/4);
-            bVal = (int) sqrt(bSquared/4);
+            rVal = (int) sqrt(rVal/4);
+            gVal = (int) sqrt(gVal/4);
+            bVal = (int) sqrt(bVal/4);
 
             tmpOutR(y, x, rVal);
             tmpOutG(y, x, gVal);

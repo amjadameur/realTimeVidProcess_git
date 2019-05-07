@@ -5,24 +5,29 @@ void CubicUpSample::filter(FastImage* bufferIn, FastImage* bufferOut) {
     int rVal, gVal, bVal;
     for(int y=0; y<bufferIn->height()-1; y++){
         for(int x=0; x<bufferIn->width()-1; x++){
-            rVal = (imInR(y, x) + imInR(y, x+1) + imInR(y+1, x) + imInR(y+1, x+1))/4;
-            gVal = (imInG(y, x) + imInG(y, x+1) + imInG(y+1, x) + imInG(y+1, x+1))/4;
-            bVal = (imInB(y, x) + imInB(y, x+1) + imInB(y+1, x) + imInB(y+1, x+1))/4;
+            rVal = 0;
+            gVal = 0;
+            bVal = 0;
 
-            tmpOutR(2*y    , 2*x    , rVal);
-            tmpOutR(2*y    , 2*(x+1), rVal);
-            tmpOutR(2*(y+1), 2*x    , rVal);
-            tmpOutR(2*(y+1), 2*(x+1), rVal);
+            for(int i = 0; i<2; i++) {
+                for(int j = 0; j<2; j++) {
+                    rVal = imInR(y+i, x+i)*imInR(y+i, x+i);
+                    gVal = imInG(y+i, x+i)*imInG(y+i, x+i);
+                    bVal = imInB(y+i, x+i)*imInB(y+i, x+i);
+                }
+            }
 
-            tmpOutG(2*y    , 2*x    , gVal);
-            tmpOutG(2*y    , 2*(x+1), gVal);
-            tmpOutG(2*(y+1), 2*x    , gVal);
-            tmpOutG(2*(y+1), 2*(x+1), gVal);
+            rVal = sqrt(rVal/4);
+            gVal = sqrt(gVal/4);
+            bVal = sqrt(bVal/4);
 
-            tmpOutB(2*y    , 2*x    , bVal);
-            tmpOutB(2*y    , 2*(x+1), bVal);
-            tmpOutB(2*(y+1), 2*x    , bVal);
-            tmpOutB(2*(y+1), 2*(x+1), bVal);
+            for(int i = 0; i<2; i++) {
+                for(int j = 0; j<2; j++) {
+                    tmpOutR(2*y+i, 2*x+j, rVal);
+                    tmpOutG(2*y+i, 2*x+j, gVal);
+                    tmpOutB(2*y+i, 2*x+j, bVal);
+                }
+            }
         }
     }
     bufferOut->FastImagePointer(tmpOut);

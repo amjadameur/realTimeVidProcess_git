@@ -290,7 +290,7 @@ void PlayerInterface::drawNextFrame()
         bufferOut->FastImageCpy(bufferIn);
 
     } else {
-        CubicDownSample *sampleFilter = new CubicDownSample();
+        CubicUpSample *sampleFilter = new CubicUpSample();
         sampleFilter->filter(bufferIn, bufferOut);
         delete sampleFilter;
     }
