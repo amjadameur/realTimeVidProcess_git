@@ -3,6 +3,7 @@
 
 #include "../filter.h"
 
+#include "../SamplingFilters/upsample.h"
 #include "../SamplingFilters/linearupsample.h"
 #include "../LinearFilters/reliablegreychannel.h"
 #include "../OtherFilters/blur.h"
@@ -15,8 +16,10 @@ private :
     ReliableGreyChannel reliableGreyFilter;
     LinearUpSample linearUpSampleFilter;
 
+    UpSample       UpSampleFilter;
+
 public :
-    Complex3(Blur *blurFilter);
+    Complex3(Blur *_blurFilter);
     void filter(FastImage *bufferIn, FastImage* bufferOut);
 };
 

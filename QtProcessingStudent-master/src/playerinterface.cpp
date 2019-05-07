@@ -275,6 +275,8 @@ void PlayerInterface::drawNextFrame()
         }
     }
 
+    bufferOut->resize(bufferIn->height(), bufferIn->height());
+
 
 
     //
@@ -290,9 +292,7 @@ void PlayerInterface::drawNextFrame()
         bufferOut->FastImageCpy(bufferIn);
 
     } else {
-        CubicUpSample *sampleFilter = new CubicUpSample();
-        sampleFilter->filter(bufferIn, bufferOut);
-        delete sampleFilter;
+        c3->filter(bufferIn, bufferOut);
     }
 
 
