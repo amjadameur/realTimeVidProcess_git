@@ -4,10 +4,12 @@
 #include "../defines.h"
 
 class Blur {
-
+    FastImage *prevIm1;
+    FastImage *prevIm2;
 public :
-    void filter(FastImage* previousBuffer2, FastImage* previousBuffer1,
-                      FastImage* bufferIn, FastImage* bufferOut);
+    Blur();
+    ~Blur();
+    void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
 #endif // BLUR

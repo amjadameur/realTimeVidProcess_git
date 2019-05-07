@@ -192,17 +192,17 @@ void FastImage::RGB(int y, int x, int r, int g, int b){
 }
 
 void FastImage::FastImageCpy(FastImage *f){
-   // cout << "(II) Construction d'une image FastImage::FastImage(FastImage *f)" << endl;
-    if( image != NULL ) _mm_free( image );
+    if (!((f->height() == hauteur) && (f->width() == largeur))){
+        if( image != NULL ) _mm_free( image );
 
-    largeur    = f->width();
-    hauteur    = f->height();
-    line_width = 4 * width();
+        largeur    = f->width();
+        hauteur    = f->height();
+        line_width = 4 * width();
 
-    image = (unsigned char*)_mm_malloc ( line_width * height(), 16);
+        image = (unsigned char*)_mm_malloc ( line_width * height(), 16);
+    }
 
     int size = line_width * height();
 
     memcpy((void*)image, (void*)f->image, size * sizeof(unsigned char));
-    //cout << "(II) Fin de construction d'une image FastImage::FastImage(FastImage *f)" << endl;
 }

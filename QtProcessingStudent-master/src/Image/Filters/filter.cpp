@@ -52,9 +52,7 @@ void Filter::filter(int filterIdx, FastImage* previousBuffer2, FastImage* previo
             cubicUpSampleFilter.filter(bufferIn, bufferOut);
             break;
 
-        case BLURFILTER :
-            blurFilter.filter(previousBuffer2, previousBuffer1, bufferIn, bufferOut);
-            break;
+
 
         case AUTOADAPTFILTER :
             autoAdaptFilter.filter(bufferIn, bufferOut);
@@ -67,10 +65,10 @@ void Filter::filter(int filterIdx, FastImage* previousBuffer2, FastImage* previo
         case DOUBLECUBICDWSAMPLEFILTER :
             doubleCubicDwSampleFilter.filter(bufferIn, bufferOut);
             break;
-
+/*
         case BLURLINEARUPSAMPLEFILTER :
             blurLinearUpSampleFilter.filter(previousBuffer2, previousBuffer1, bufferIn, bufferOut);
-            break;
+            break;*/
     }
 }
 

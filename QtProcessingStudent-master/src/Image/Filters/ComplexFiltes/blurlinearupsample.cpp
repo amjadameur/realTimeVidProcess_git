@@ -1,33 +1,21 @@
 #include "blurlinearupsample.h"
 
 BlurLinearUpSample::BlurLinearUpSample() {
-    tmp1 = new FastImage(2, 2);
-    tmp2 = new FastImage(2, 2);
+    //tmpIn = new FastImage(2, 2);
 }
 
 BlurLinearUpSample::~BlurLinearUpSample() {
-    delete tmp1;
-    delete tmp2;
+   // delete tmpIn;
 }
 
-void BlurLinearUpSample::refreshTmp() {
-    tmp1->FastImageCpy(tmp2);
-}
 
-void BlurLinearUpSample::filter(FastImage* previousBuffer2, FastImage* previousBuffer1,
-                                FastImage* bufferIn, FastImage* bufferOut) {
+void BlurLinearUpSample::filter(FastImage* bufferIn, FastImage* bufferOut) {
+    tmpIn = bufferIn;
 
-    tmp1->FastImageCpy(bufferIn);
-    tmp2->FastImageCpy(bufferIn);
+    redChannelFilter.filter(tmpIn, bufferOut);
 
-    blurFilter.filter(previousBuffer2, previousBuffer1, tmp1, tmp2);
-    refreshTmp();
+    tmpIn = bufferOut;
 
-    reliableGreyFilter.filter(tmp1, tmp2);
-    refreshTmp();
-
-    linearUpSampleFilter.filter(tmp1, tmp2);
-
-    bufferOut->FastImageCpy(tmp2);
+    reliableGreyFilter.filter(tmpIn, bufferOut);
 }
 
