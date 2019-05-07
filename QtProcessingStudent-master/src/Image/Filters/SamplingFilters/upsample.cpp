@@ -26,7 +26,5 @@ void UpSample::filter(FastImage* bufferIn, FastImage* bufferOut) {
             tmpOutB(2*(y+1), 2*(x+1), bVal);
         }
     }
-    delete bufferOut;
-    bufferOut = new FastImage(tmpOut);
-    delete tmpOut;
+    bufferOut->FastImagePointer(tmpOut);
 }

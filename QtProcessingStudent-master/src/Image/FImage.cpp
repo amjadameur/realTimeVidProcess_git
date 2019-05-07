@@ -190,6 +190,8 @@ void FastImage::RGB(int y, int x, int r, int g, int b){
         Blue (y,x,b);
 }
 
+
+
 void FastImage::FastImageCpy(FastImage *f){
     if (!((f->height() == hauteur) && (f->width() == largeur))){
         if( image != NULL ) _mm_free( image );
@@ -204,4 +206,13 @@ void FastImage::FastImageCpy(FastImage *f){
     int size = line_width * height();
 
     memcpy((void*)image, (void*)f->image, size * sizeof(unsigned char));
+}
+
+void FastImage::FastImagePointer(FastImage *src) {
+    largeur    = src->width();
+    hauteur    = src->height();
+    line_width = 4 * width();
+
+    _mm_free( image );
+    image = src->image;
 }

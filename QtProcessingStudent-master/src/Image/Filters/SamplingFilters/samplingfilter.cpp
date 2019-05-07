@@ -5,16 +5,16 @@
 
 FastImage *SamplingFilter::decreaseImSize(FastImage* bufferIn) {
     // Dicrease Image Size
-    int height = ceil((bufferIn->height())/RESIZE_FACTOR);
-    int width  = ceil((bufferIn->width())/RESIZE_FACTOR);
-    return (new FastImage(width, height));
+    int height = (bufferIn->height()/2) +1;
+    int width  = (bufferIn->width() /2) +1;
+    return new FastImage(height, width);
 }
 
 FastImage *SamplingFilter::increaseImSize(FastImage *bufferIn) {
     // Increase Image Size
-    int height = bufferIn->height()*RESIZE_FACTOR;
-    int width  = bufferIn->width() *RESIZE_FACTOR;
-    return (new FastImage(height, width));
+    int height = 2*bufferIn->height();
+    int width  = 2*bufferIn->width() ;
+    return new FastImage(height, width);
 }
 
 

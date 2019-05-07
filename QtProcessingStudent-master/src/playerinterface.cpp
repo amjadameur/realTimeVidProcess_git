@@ -290,7 +290,7 @@ void PlayerInterface::drawNextFrame()
         bufferOut->FastImageCpy(bufferIn);
 
     } else {
-        UpSample *sampleFilter = new UpSample();
+        DownSample *sampleFilter = new DownSample();
         sampleFilter->filter(bufferIn, bufferOut);
         delete sampleFilter;
     }

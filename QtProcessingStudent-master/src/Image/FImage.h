@@ -37,6 +37,7 @@ public:
         void FastCopyTo( FastImage *p );
 
         void FastImageCpy(FastImage *f);
+        void FastImagePointer(FastImage *src);
 
         int width();
         int height();

@@ -15,7 +15,6 @@ class SamplingFilter {
 public :
     FastImage* decreaseImSize(FastImage* bufferIn); // Decrease Image Size
     FastImage* increaseImSize(FastImage* bufferIn); // Increase Image Size
-
 };
 
 

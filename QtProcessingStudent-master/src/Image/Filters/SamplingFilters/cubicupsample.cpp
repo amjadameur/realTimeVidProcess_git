@@ -25,7 +25,6 @@ void CubicUpSample::filter(FastImage* bufferIn, FastImage* bufferOut) {
             tmpOutB(2*(y+1), 2*(x+1), bVal);
         }
     }
-    delete bufferOut;
-    bufferOut = tmpOut;
+    bufferOut->FastImagePointer(tmpOut);
 }
 
