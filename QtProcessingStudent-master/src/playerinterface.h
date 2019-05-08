@@ -73,40 +73,42 @@
 
 #define POSITION_RESOLUTION 10000
 
-#define  RED                   1
-#define  GREEN                 2
-#define  BLUE                  3
-#define  GREY                  4
-#define  RELIABLEGREY          5
-#define  DWSAMPLE              6
-#define  LINEARDWSAMPLE        7
-#define  CUBICDWSAMPLE         8
-#define  UPSAMPLE              9
-#define  LINEARUPSAMPLE       10
-#define  CUBICUPSAMPLE        11
-#define  BLUR                 12
-#define  AUTOADAPT            13
-#define  INVERSE              14
+#define  RED                   0
+#define  GREEN                 1
+#define  BLUE                  2
+#define  GREY                  3
+#define  RELIABLEGREY          4
 
-#define  CONVB0               15
-#define  CONVB1               16
-#define  CONVB2               17
-#define  CONVB3               18
-#define  CONVM0               19
-#define  CONVM1               20
-#define  CONVM2               21
-#define  CONVM3               22
-#define  CONVM4               23
-#define  CONVM5               24
-#define  CONVM6               25
-#define  CONVM7               26
-#define  CONVM8               27
-#define  CONVM9               28
+#define  DWSAMPLE              5
+#define  LINEARDWSAMPLE        6
+#define  CUBICDWSAMPLE         7
+#define  UPSAMPLE              8
+#define  LINEARUPSAMPLE        9
+#define  CUBICUPSAMPLE        10
 
-#define  C1                   29
-#define  C2                   30
-#define  C3                   31
-#define  C4                   32
+#define  BLUR                 11
+#define  AUTOADAPT            12
+#define  INVERSE              13
+
+#define  CONVB0               14
+#define  CONVB1               15
+#define  CONVB2               16
+#define  CONVB3               17
+#define  CONVM0               18
+#define  CONVM1               19
+#define  CONVM2               20
+#define  CONVM3               21
+#define  CONVM4               22
+#define  CONVM5               23
+#define  CONVM6               24
+#define  CONVM7               25
+#define  CONVM8               26
+#define  CONVM9               27
+
+#define  COMPLEX1             28
+#define  COMPLEX2             29
+#define  COMPLEX3             30
+#define  COMPLEX4             31
 
 class PlayerInterface : public QWidget
 {

@@ -1,11 +1,11 @@
-#ifndef COMPLEX1
-#define COMPLEX1
+#ifndef COMPLEX1_H
+#define COMPLEX1_H
 
 #include "../filter.h"
 
 #include "../SamplingFilters/cubicdownsample.h"
 
-class Complex1 : public Filter {
+class C1 : public Filter {
 private :
     FastImage *tmpIn;
 

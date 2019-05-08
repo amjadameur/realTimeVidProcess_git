@@ -7,6 +7,7 @@ class C4 : public Filter {
 
 public:
     C4();
+    virtual void filter(FastImage *bufferIn, FastImage *bufferOut);
 };
 
 #endif // C4_H

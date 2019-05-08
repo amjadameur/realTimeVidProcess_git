@@ -6,10 +6,9 @@
 class Inverse : public Filter {
 
 public :
-    virtual ~Inverse();
     virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
 
-#endif // INVERSE
+#endif
 

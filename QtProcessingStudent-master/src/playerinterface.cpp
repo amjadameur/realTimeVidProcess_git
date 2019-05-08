@@ -134,18 +134,45 @@ PlayerInterface::PlayerInterface()
     myBox->addWidget( filter1  );
     myBox->addWidget( filter2  );
     myWidget->setLayout(myBox);
-    //blurFilter = new Blur();
-    //inverseFilter = new Inverse();
-    //c3 = new Complex3(blurFilter);
 
-    //filters.push_back(new );
+    filters.push_back(new RedChannel());
+    filters.push_back(new GreenChannel());
+    filters.push_back(new BlueChannel());
+    filters.push_back(new GreyChannel());
+    filters.push_back(new ReliableGreyChannel());
+
+    filters.push_back(new DownSample());
+    filters.push_back(new LinearDownSample());
+    filters.push_back(new CubicDownSample());
+    filters.push_back(new UpSample());
+    filters.push_back(new LinearUpSample());
+    filters.push_back(new CubicUpSample());
+
+    filters.push_back(new Blur());
+    filters.push_back(new AutoAdapt());
+    filters.push_back(new Inverse());
+
+    filters.push_back(new B0());
+    filters.push_back(new B1());
+    filters.push_back(new B2());
+    filters.push_back(new B3());
+    filters.push_back(new M0());
+    filters.push_back(new M1());
+    filters.push_back(new M2());
+    filters.push_back(new M3());
+    filters.push_back(new M4());
+    filters.push_back(new M5());
+    filters.push_back(new M6());
+    filters.push_back(new M7());
+    filters.push_back(new M8());
+    filters.push_back(new M9());
+
+    filters.push_back(new C1());
+    filters.push_back(new C2());
+    filters.push_back(new C3((Blur*)  filters[BLUR]));
+    filters.push_back(new C4());
 
 
-    //filters.push_back(inverseFilter);
-    //filters.push_back(blurFilter);
-    //filters.push_back(c3);
-
-    //upSampleFilter = new UpSample();
 
     /*fifo = new int[NB_FILTERS];
     for(int i = 0; i<NB_FILTERS; i++) {

@@ -1,5 +1,5 @@
-#ifndef COMPLEX3
-#define COMPLEX3
+#ifndef COMPLEX3_H
+#define COMPLEX3_H
 
 #include "../filter.h"
 
@@ -8,7 +8,7 @@
 #include "../LinearFilters/reliablegreychannel.h"
 #include "../OtherFilters/blur.h"
 
-class Complex3 : public Filter {
+class C3 : public Filter {
 private :
     FastImage *tmpIn;
 
@@ -19,7 +19,7 @@ private :
     UpSample       UpSampleFilter;
 
 public :
-    Complex3(Blur *_blurFilter);
+    C3(Blur *_blurFilter);
     virtual void filter(FastImage *bufferIn, FastImage* bufferOut);
 };
 
