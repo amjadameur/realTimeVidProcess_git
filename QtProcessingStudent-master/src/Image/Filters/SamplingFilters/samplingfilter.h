@@ -4,8 +4,6 @@
 #include "../filter.h"
 
 class SamplingFilter : public Filter {
-protected :
-    int rVal, gVal, bVal;
 
 public:
     virtual FastImage* fastImageResize(FastImage *bufferIn)    = 0;

@@ -29,7 +29,6 @@ LinearFilter::~LinearFilter() {
 }
 
 void LinearFilter::filter(FastImage* bufferIn, FastImage* bufferOut) {
-    int rVal, gVal, bVal;
     for(int y=0; y<bufferIn->height(); y++){
         for(int x=0; x<bufferIn->width(); x++){
             rVal = (int) coeffs[0][0]*imInR(y,x) + coeffs[0][1]*imInG(y,x) + coeffs[0][2]*imInB(y,x);

@@ -33,7 +33,6 @@ void Blur::filter(FastImage *bufferIn, FastImage *bufferOut) {
         bufferOut->FastImagePointer(bufferIn);
 
     } else {
-        int rVal, gVal, bVal;
         for(int y=0; y<bufferIn->height(); y++){
             for(int x=0; x<bufferIn->width(); x++){
                     rVal = (int) 0.5*bufferIn->Red(y, x)   + 0.3*prevIm1->Red(y, x)   + 0.2*prevIm2->Red(y, x);

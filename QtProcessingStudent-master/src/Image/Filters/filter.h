@@ -21,6 +21,8 @@ using namespace std;
 #define tmpOutB(y, x, v) (tmpOut->Blue(y, x, v) )
 
 class Filter {
+protected :
+    int rVal, gVal, bVal;
 
 public :
     virtual void filter(FastImage *bufferIn, FastImage *bufferOut) = 0;
