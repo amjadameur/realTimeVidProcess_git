@@ -1,7 +1,7 @@
 #include "samplingfilter.h"
 
-#ifndef UPSAMPLE
-#define UPSAMPLE
+#ifndef UPSAMPLE_H
+#define UPSAMPLE_H
 
 class UpSample : public SamplingFilter {
 

@@ -1,7 +1,7 @@
 #include "samplingfilter.h"
 
-#ifndef CUBICUPSAMPLE
-#define CUBICUPSAMPLE
+#ifndef CUBICUPSAMPLE_H
+#define CUBICUPSAMPLE_H
 
 class CubicUpSample : public SamplingFilter {
 

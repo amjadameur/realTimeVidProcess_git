@@ -2,6 +2,7 @@
 
 #define debug false
 #include "time.h"
+
 //
 // CONSTRUCTEUR DE LA CLASSE EN CHARGE DE CREER L'INTERFACE GRAPHIQUE DU PLAYER
 //
@@ -133,8 +134,17 @@ PlayerInterface::PlayerInterface()
     myBox->addWidget( filter1  );
     myBox->addWidget( filter2  );
     myWidget->setLayout(myBox);
-    blurFilter = new Blur();
-    c3 = new Complex3(blurFilter);
+    //blurFilter = new Blur();
+    //inverseFilter = new Inverse();
+    //c3 = new Complex3(blurFilter);
+
+    //filters.push_back(new );
+
+
+    //filters.push_back(inverseFilter);
+    //filters.push_back(blurFilter);
+    //filters.push_back(c3);
+
     //upSampleFilter = new UpSample();
 
     /*fifo = new int[NB_FILTERS];
@@ -217,8 +227,8 @@ PlayerInterface::~PlayerInterface()
     delete bufferIn;
     delete bufferOut;
 
-    delete blurFilter;
-    delete c3;
+   // delete blurFilter;
+   // delete c3;
     //delete upSampleFilter;
 }
 
@@ -275,7 +285,7 @@ void PlayerInterface::drawNextFrame()
         }
     }
 
-    bufferOut->resize(bufferIn->height(), bufferIn->height());
+    bufferOut->resize(bufferIn->height(), bufferIn->width());
 
 
 
@@ -286,14 +296,16 @@ void PlayerInterface::drawNextFrame()
 
     startC = clock(); // ON RELANCE LE COMPTEUR...
 
-   blurFilter->refreshPrevIm(bufferIn);
+   //blurFilter->refreshPrevIm(bufferIn);
 
    if( _listeFiltres->currentIndex() == 0 ){
         bufferOut->FastImageCpy(bufferIn);
 
     } else {
-        c3->filter(bufferIn, bufferOut);
-    }
+       Filter *m0 = new M3();
+       m0->filter(bufferIn, bufferOut);
+       delete m0;
+   }
 
 
 

@@ -10,7 +10,7 @@
 #define tmpOutB(y, x, v) tmpOut->Blue(y, x, v)
 
 
-class SamplingFilter {
+class SamplingFilter : public Filter {
 
 public :
     FastImage* decreaseImSize(FastImage* bufferIn); // Decrease Image Size

@@ -1,12 +1,12 @@
-#ifndef AUTOADAPT
-#define AUTOADAPT
+#ifndef AUTOADAPT_H
+#define AUTOADAPT_H
 
 #include "../filter.h"
 
-class AutoAdapt {
+class AutoAdapt : public Filter {
 
 public :
-    void filter(FastImage* bufferIn, FastImage* bufferOut);
+    virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
 #endif // AUTOADAPT

@@ -8,7 +8,7 @@
 #include "../LinearFilters/reliablegreychannel.h"
 #include "../OtherFilters/blur.h"
 
-class Complex3  {
+class Complex3 : public Filter {
 private :
     FastImage *tmpIn;
 
@@ -20,7 +20,7 @@ private :
 
 public :
     Complex3(Blur *_blurFilter);
-    void filter(FastImage *bufferIn, FastImage* bufferOut);
+    virtual void filter(FastImage *bufferIn, FastImage* bufferOut);
 };
 
 

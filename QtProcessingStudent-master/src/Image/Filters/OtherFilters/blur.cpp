@@ -23,15 +23,14 @@ void Blur::refreshPrevIm(FastImage *bufferIn) {
 }
 
 bool Blur::differentImSizes(FastImage *bufferIn) {
-    if ((bufferIn->width() != prevIm1->width()) || (bufferIn->height() != prevIm1->height()) ||
-        (bufferIn->width() != prevIm2->width()) || (bufferIn->height() != prevIm2->height())) return true;
+    if ((bufferIn->width() != prevIm1->width()) || (bufferIn->height() != prevIm1->height())) return true;
 
     return false;
 }
 
 void Blur::filter(FastImage *bufferIn, FastImage *bufferOut) {
     if(prevIm2 == NULL || prevIm2 == NULL || differentImSizes(bufferIn)) {
-        bufferOut->FastImageCpy(bufferIn);
+        bufferOut->FastImagePointer(bufferIn);
 
     } else {
         int rVal, gVal, bVal;

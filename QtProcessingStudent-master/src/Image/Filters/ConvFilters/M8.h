@@ -1,16 +1,14 @@
 #include "Convfilter.h"
 
-#ifndef M8
-#define M8
+#ifndef M8_H
+#define M8_H
 
 
-class m8 : public ConvFilter {
+class M8 : public ConvFilter {
 private :
 
 public :
-    explicit m8();
-    FastImage* filter(FastImage* _bufferIn, FastImage* _bufferOut);
-
+    M8();
 };
 
 #endif // M8F

@@ -17,7 +17,12 @@ using namespace std;
 #define imOutG(y, x, v) bufferOut->Green(y, x, v)
 #define imOutB(y, x, v) bufferOut->Blue(y, x, v)
 
+class Filter {
 
+public :
+    virtual void filter(FastImage *bufferIn, FastImage *bufferOut) = 0;
+    virtual ~Filter() {};
+};
 
 
 #endif // FILTER

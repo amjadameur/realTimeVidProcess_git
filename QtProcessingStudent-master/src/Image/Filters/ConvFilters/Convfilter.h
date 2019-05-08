@@ -1,10 +1,10 @@
 #include "../filter.h"
 
-#ifndef CONVFILTER
-#define CONVFILTER
+#ifndef CONVFILTER_H
+#define CONVFILTER_H
 
 
-class ConvFilter {
+class ConvFilter : public Filter {
 protected :
     int intFilter;
     int *matrix;
@@ -23,7 +23,7 @@ public :
     void setMatrix(int _matrix[9]);
 
     void adjustImage(FastImage* _bufferIn, FastImage* _bufferOut);
-    void applyFilter(FastImage* _bufferIn, FastImage* _bufferOut);
+    virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
 

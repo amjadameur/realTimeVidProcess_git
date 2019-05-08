@@ -1,17 +1,14 @@
 #include "Convfilter.h"
 
-#ifndef M0
-#define M0
+#ifndef M0_H
+#define M0_H
 
 
-class m0 : public ConvFilter {
+class M0 : public ConvFilter {
 private :
 
 public :
-    //explicit M0(FastImage* bufferIn, FastImage* bufferOut, int _matrix[9], int _coeff);
-    //explicit M0(FastImage* bufferIn, FastImage* bufferOut, int _intFilter, int _coeff);
-    explicit m0();
-    FastImage* filter(FastImage* _bufferIn, FastImage* _bufferOut);
+    M0();
 
 };
 

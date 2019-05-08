@@ -48,11 +48,45 @@
 #include "./Image/Filters/OtherFilters/autoadapt.h"
 #include "./Image/Filters/OtherFilters/inverse.h"
 
+// Conv Filters
+#include "./Image/Filters/ConvFilters/Convfilter.h"
+#include "./Image/Filters/ConvFilters/B0.h"
+#include "./Image/Filters/ConvFilters/B1.h"
+#include "./Image/Filters/ConvFilters/B2.h"
+#include "./Image/Filters/ConvFilters/B3.h"
+#include "./Image/Filters/ConvFilters/M0.h"
+#include "./Image/Filters/ConvFilters/M1.h"
+#include "./Image/Filters/ConvFilters/M2.h"
+#include "./Image/Filters/ConvFilters/M3.h"
+#include "./Image/Filters/ConvFilters/M4.h"
+#include "./Image/Filters/ConvFilters/M5.h"
+#include "./Image/Filters/ConvFilters/M6.h"
+#include "./Image/Filters/ConvFilters/M7.h"
+#include "./Image/Filters/ConvFilters/M8.h"
+#include "./Image/Filters/ConvFilters/M9.h"
+
 // Complex filters
 #include "./Image/Filters/ComplexFilters/complex1.h"
 #include "./Image/Filters/ComplexFilters/complex3.h"
 
 #define POSITION_RESOLUTION 10000
+
+#define  RED                   1
+#define  GREEN                 2
+#define  BLUE                  3
+#define  GREY                  4
+#define  RELIABLEGREY          5
+#define  DWSAMPLE              6
+#define  LINEARDWSAMPLE        7
+#define  CUBICDWSAMPLE         8
+#define  UPSAMPLE              9
+#define  LINEARUPSAMPLE       10
+#define  CUBICUPSAMPLE        11
+#define  BLUR                 12
+#define  AUTOADAPT            13
+#define  INVERSE              14
+#define  C1                   15
+#define  C3                   16
 
 
 class PlayerInterface : public QWidget
@@ -81,9 +115,8 @@ class PlayerInterface : public QWidget
     ////////////////////// to be discarded
     QLabel *filter1;
     QLabel *filter2;
-    Blur *blurFilter;
-    Complex3* c3;
-    //UpSample* upSampleFilter;
+
+    vector<Filter*> filters;
 
     int* fifo;
     //////////////////////////////////////

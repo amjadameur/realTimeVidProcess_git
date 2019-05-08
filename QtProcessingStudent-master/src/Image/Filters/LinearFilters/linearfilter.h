@@ -3,7 +3,7 @@
 
 #include "../filter.h"
 
-class LinearFilter {
+class LinearFilter : public Filter {
 protected :
     double (*coeffs)[3];
 
@@ -11,12 +11,12 @@ public :
 
     LinearFilter();
 
-    ~LinearFilter();
+    virtual ~LinearFilter();
 
     void initCoeffs(void);
     void setCoeffs(double _Coeffs[][3]);
 
-    void filter(FastImage* bufferIn, FastImage* bufferOut);
+    virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
 

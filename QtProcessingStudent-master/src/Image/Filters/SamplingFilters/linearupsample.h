@@ -1,7 +1,7 @@
 #include "samplingfilter.h"
 
-#ifndef LINEARUPSAMPLE
-#define LINEARUPSAMPLE
+#ifndef LINEARUPSAMPLE_H
+#define LINEARUPSAMPLE_H
 
 class LinearUpSample : public SamplingFilter {
 

@@ -46,15 +46,15 @@ void ConvFilter::adjustImage(FastImage* _bufferIn, FastImage* _bufferOut) {
 }
 
 void ConvFilter::setFilter(int _intFilter) {
-    if (_intFilter == 0) {
-        matrix[0] = 0; matrix[1] = 0; matrix[2] = 0;
-        matrix[3] = 0; matrix[4] = 1; matrix[5] = 0;
-        matrix[6] = 0; matrix[7] = 0; matrix[8] = 0;
+    if (_intFilter == 0) { // M0
+        matrix[0] = 0 ;  matrix[1] = 0; matrix[2] = 0;
+        matrix[3] = -1;  matrix[4] = 0; matrix[5] = 1;
+        matrix[6] = 0 ;  matrix[7] = 0; matrix[8] = 0;
         coeff = 1;
-    } else if (_intFilter == 1) { // M2
-        matrix[0] = 0; matrix[1] = 0;  matrix[2] = 0;
-        matrix[3] = 0; matrix[4] = 0;  matrix[5] = 0;
-        matrix[6] = 0; matrix[7] = 0;  matrix[8] = 0;
+    } else if (_intFilter == 1) { //M1
+        matrix[0] = 0 ; matrix[1] = 0;  matrix[2] = 0 ;
+        matrix[3] = -1; matrix[4] = 2;  matrix[5] = -1;
+        matrix[6] = 0 ; matrix[7] = 0;  matrix[8] = 0 ;
         coeff = 1;
     } else if (_intFilter == 2) {  // M2
         matrix[0] = -1; matrix[1] = 0;  matrix[2] = 1;
@@ -101,7 +101,7 @@ void ConvFilter::setFilter(int _intFilter) {
         matrix[3] = 1; matrix[4] = 4; matrix[5] = 1;
         matrix[6] =  0; matrix[7] = 1; matrix[8] =  0;
         coeff = 8;
-    } else if (_intFilter == 11) {   // b11/8
+    } else if (_intFilter == 11) {   // b1
         matrix[0] = 1 ; matrix[1] = 2; matrix[2] = 1;
         matrix[3] = 2 ; matrix[4] = 8; matrix[5] = 2;
         matrix[6] = 1 ; matrix[7] = 2; matrix[8] = 1;
@@ -122,63 +122,60 @@ void ConvFilter::setFilter(int _intFilter) {
         matrix[3] = 1; matrix[4] =  0; matrix[5] = 1;
         matrix[6] = 1; matrix[7] = 1; matrix[8] = 1;
         coeff = 8;
-        cout<< "Sorry, 0 definition of this filter !" << endl;
     }
 }
 
 
-void ConvFilter::applyFilter(FastImage* _bufferIn, FastImage* _bufferOut)
+void ConvFilter::filter(FastImage* bufferIn, FastImage* bufferOut)
 {
     setFilter(intFilter);
-    //cout << intFilter << endl;
-    //cout << coeff << matrix[0] << matrix[1] << matrix[2] << endl;
-    //adjustImage();
-    for(int y = 0; y < _bufferIn->height(); y++)
-        for(int x= 0; x< 4 * _bufferIn->width(); x++)
+
+    for(int y = 0; y < bufferIn->height(); y++)
+        for(int x= 0; x< 4 * bufferIn->width(); x++)
         {
-            if(y == 0 || x== 0 || y == _bufferIn->height() - 1 || x== 4 * (_bufferIn->width() - 1) || ((x== 1 || x== 2 || (x== 4*(_bufferIn->width()- 1) + 1 || (x== 4 * (_bufferIn->width() - 1) + 2))))) {
-                _bufferOut->Red(y,x, _bufferIn->Red(y,x));
-                _bufferOut->Blue(y,x, _bufferIn->Blue(y,x));
-                _bufferOut->Green(y,x, _bufferIn->Green(y,x));
+            if(y == 0 || x== 0 || y == bufferIn->height() - 1 || x== 4 * (bufferIn->width() - 1) || ((x== 1 || x== 2 || (x== 4*(bufferIn->width()- 1) + 1 || (x== 4 * (bufferIn->width() - 1) + 2))))) {
+                bufferOut->Red(y,x, bufferIn->Red(y,x));
+                bufferOut->Blue(y,x, bufferIn->Blue(y,x));
+                bufferOut->Green(y,x, bufferIn->Green(y,x));
             }else
             {
-            int R = matrix[0] * _bufferIn->Red(y-1,x-1) +
-                    matrix[1] * _bufferIn->Red(y-1,x) +
-                    matrix[2] * _bufferIn->Red(y-1,x+1) +
-                    matrix[3] * _bufferIn->Red(y,x-1)+
-                    matrix[4] * _bufferIn->Red(y,x) +
-                    matrix[5] * _bufferIn->Red(y,x+1) +
-                    matrix[6] * _bufferIn->Red(y+1,x-1) +
-                    matrix[7] * _bufferIn->Red(y+1,x) +
-                    matrix[8] * _bufferIn->Red(y+1,x+1);
+            int R = matrix[0] * bufferIn->Red(y-1,x-1) +
+                    matrix[1] * bufferIn->Red(y-1,x)   +
+                    matrix[2] * bufferIn->Red(y-1,x+1) +
+                    matrix[3] * bufferIn->Red(y,x-1)   +
+                    matrix[4] * bufferIn->Red(y,x)     +
+                    matrix[5] * bufferIn->Red(y,x+1)   +
+                    matrix[6] * bufferIn->Red(y+1,x-1) +
+                    matrix[7] * bufferIn->Red(y+1,x)   +
+                    matrix[8] * bufferIn->Red(y+1,x+1);
             int fR = R / coeff ;
-            _bufferOut->Red(y,x,fR);
+            bufferOut->Red(y,x,fR);
 
-            int B = matrix[0] * _bufferIn->Blue(y-1,x-1) +
-                    matrix[1] * _bufferIn->Blue(y-1,x) +
-                    matrix[2] * _bufferIn->Blue(y-1,x+1) +
-                    matrix[3] * _bufferIn->Blue(y,x-1)+
-                    matrix[4] * _bufferIn->Blue(y,x) +
-                    matrix[5] * _bufferIn->Blue(y,x+1) +
-                    matrix[6] * _bufferIn->Blue(y+1,x-1) +
-                    matrix[7] * _bufferIn->Blue(y+1,x) +
-                    matrix[8] * _bufferIn->Blue(y+1,x+1);
+            int B = matrix[0] * bufferIn->Blue(y-1,x-1) +
+                    matrix[1] * bufferIn->Blue(y-1,x) +
+                    matrix[2] * bufferIn->Blue(y-1,x+1) +
+                    matrix[3] * bufferIn->Blue(y,x-1)+
+                    matrix[4] * bufferIn->Blue(y,x) +
+                    matrix[5] * bufferIn->Blue(y,x+1) +
+                    matrix[6] * bufferIn->Blue(y+1,x-1) +
+                    matrix[7] * bufferIn->Blue(y+1,x) +
+                    matrix[8] * bufferIn->Blue(y+1,x+1);
             int fB = B / coeff ;
-            _bufferOut->Blue(y,x,fB);
+            bufferOut->Blue(y,x,fB);
 
 
 
-           int G =  matrix[0] * _bufferIn->Green(y-1,x-1) +
-                    matrix[1] * _bufferIn->Green(y-1,x) +
-                    matrix[2] * _bufferIn->Green(y-1,x+1) +
-                    matrix[3] * _bufferIn->Green(y,x-1)+
-                    matrix[4] * _bufferIn->Green(y,x) +
-                    matrix[5] * _bufferIn->Green(y,x+1) +
-                    matrix[6] * _bufferIn->Green(y+1,x-1) +
-                    matrix[7] * _bufferIn->Green(y+1,x) +
-                    matrix[8] * _bufferIn->Green(y+1,x+1);
+           int G =  matrix[0] * bufferIn->Green(y-1,x-1) +
+                    matrix[1] * bufferIn->Green(y-1,x) +
+                    matrix[2] * bufferIn->Green(y-1,x+1) +
+                    matrix[3] * bufferIn->Green(y,x-1)+
+                    matrix[4] * bufferIn->Green(y,x) +
+                    matrix[5] * bufferIn->Green(y,x+1) +
+                    matrix[6] * bufferIn->Green(y+1,x-1) +
+                    matrix[7] * bufferIn->Green(y+1,x) +
+                    matrix[8] * bufferIn->Green(y+1,x+1);
            int fG = G / coeff ;
-           _bufferOut->Green(y,x,fG);
+           bufferOut->Green(y,x,fG);
 
 
             }

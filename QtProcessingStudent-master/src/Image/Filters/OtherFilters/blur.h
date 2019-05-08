@@ -1,20 +1,19 @@
-#ifndef BLUR
-#define BLUR
+#ifndef BLUR_H
+#define BLUR_H
 
 #include "../filter.h"
 
-class Blur {
+class Blur : public Filter {
     FastImage *prevIm1;
     FastImage *prevIm2;
 
 public :
     Blur();
-    ~Blur();
-    void refreshPrevIm(FastImage* bufferIn);
-
+    virtual ~Blur();
+    void refreshPrevIm(FastImage *bufferIn);
 
     bool differentImSizes(FastImage *bufferIn);
-    void filter(FastImage* bufferIn, FastImage* bufferOut);
+    virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
 #endif // BLUR

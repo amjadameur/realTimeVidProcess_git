@@ -1,15 +1,14 @@
 #include "Convfilter.h"
 
-#ifndef M5
-#define M5
+#ifndef M5_H
+#define M5_H
 
 
-class m5 : public ConvFilter {
+class M5 : public ConvFilter {
 private :
 
 public :
-    explicit m5();
-    FastImage* filter(FastImage* _bufferIn, FastImage* _bufferOut);
+    M5();
 
 };
 

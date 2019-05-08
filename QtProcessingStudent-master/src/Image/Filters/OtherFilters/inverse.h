@@ -1,12 +1,13 @@
-#ifndef INVERSE
-#define INVERSE
+#ifndef INVERSE_H
+#define INVERSE_H
 
 #include "../filter.h"
 
-class Inverse {
+class Inverse : public Filter {
 
 public :
-    void filter(FastImage* bufferIn, FastImage* bufferOut);
+    virtual ~Inverse();
+    virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
 
