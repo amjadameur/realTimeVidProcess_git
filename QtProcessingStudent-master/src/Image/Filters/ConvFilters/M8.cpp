@@ -1,7 +1,10 @@
 #include "M8.h"
 
 M8::M8() : ConvFilter() {
-    int _intF = 8;
-    setIntFilter(_intF);
+    coeff = 1;
+    int matrix[][3] = {{-1, -2, -1},
+                       {-2, 12, -2},
+                       {-1, -2, -1}};
+    setMatrix(matrix);
 }
 

@@ -6,23 +6,15 @@
 
 class ConvFilter : public Filter {
 protected :
-    int intFilter;
-    int *matrix;
+    int (*matrix)[3];
     int coeff;
 
 public :
-    ConvFilter(int _matrix[9]);
-    ConvFilter(int _intFilter);
     ConvFilter();
-
     ~ConvFilter();
 
-    void setIntFilter(int _intF);
-    void setFilter(int _intFilter);
-    void initMatrix(void);
-    void setMatrix(int _matrix[9]);
 
-    void adjustImage(FastImage* _bufferIn, FastImage* _bufferOut);
+    void setMatrix(int matrix[][3]);
     virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 

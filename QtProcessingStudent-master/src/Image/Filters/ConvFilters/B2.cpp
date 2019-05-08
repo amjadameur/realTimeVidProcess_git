@@ -1,8 +1,11 @@
 #include "B2.h"
 
 B2::B2() : ConvFilter() {
-    int _intF = 12;
-    setIntFilter(_intF);
+    coeff = 9;
+    int matrix[][3] = {{1, 1, 1},
+                       {1, 1, 1},
+                       {1, 1, 1}};
+    setMatrix(matrix);
 }
 
 

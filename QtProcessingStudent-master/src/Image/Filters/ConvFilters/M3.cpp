@@ -1,7 +1,10 @@
 #include "M3.h"
 
 M3::M3() : ConvFilter() {
-    int _intF = 3;
-    setIntFilter(_intF);
+    coeff = 1;
+    int matrix[][3] = {{-1, 0, 1},
+                       {-1, 0, 1},
+                       {-1, 0, 1}};
+    setMatrix(matrix);
 }
 
