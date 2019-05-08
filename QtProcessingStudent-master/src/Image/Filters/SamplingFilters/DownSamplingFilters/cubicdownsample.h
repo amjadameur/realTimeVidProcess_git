@@ -1,13 +1,11 @@
-#include "samplingfilter.h"
-
 #ifndef CUBICDOWNSAMPLE
 #define CUBICDOWNSAMPLE
 
+#include "downsamplingfilter.h"
 
-class CubicDownSample : public SamplingFilter {
+class CubicDownSample : public DownSamplingFilter {
 
 public :
-
     void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 

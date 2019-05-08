@@ -3,7 +3,7 @@
 
 #include "../filter.h"
 
-#include "../SamplingFilters/cubicdownsample.h"
+#include "../SamplingFilters/DownSamplingFilters/cubicdownsample.h"
 
 class C1 : public Filter {
 private :

@@ -1,9 +1,9 @@
-#include "samplingfilter.h"
-
 #ifndef LINEARUPSAMPLE_H
 #define LINEARUPSAMPLE_H
 
-class LinearUpSample : public SamplingFilter {
+#include "upsamplingfilter.h"
+
+class LinearUpSample : public UpSamplingFilter {
 
 public :
     void filter(FastImage* bufferIn, FastImage* bufferOut);

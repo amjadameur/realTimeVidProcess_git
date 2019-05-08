@@ -19,18 +19,11 @@ HEADERS += src/playerinterface.h \
     src/Image/CVideo.h \
     src/Image/Filters/filter.h \
     src/Image/Filters/LinearFilters/linearfilter.h \
-    src/Image/Filters/SamplingFilters/samplingfilter.h \
     src/Image/Filters/LinearFilters/redchannel.h \
     src/Image/Filters/LinearFilters/greenchannel.h \
     src/Image/Filters/LinearFilters/bluechannel.h \
     src/Image/Filters/LinearFilters/greychannel.h \
     src/Image/Filters/LinearFilters/reliablegreychannel.h \
-    src/Image/Filters/SamplingFilters/downsample.h \
-    src/Image/Filters/SamplingFilters/lineardownsample.h \
-    src/Image/Filters/SamplingFilters/cubicdownsample.h \
-    src/Image/Filters/SamplingFilters/upsample.h \
-    src/Image/Filters/SamplingFilters/linearupsample.h \
-    src/Image/Filters/SamplingFilters/cubicupsample.h \
     src/Image/Filters/OtherFilters/blur.h \
     src/Image/Filters/OtherFilters/autoadapt.h \
     src/Image/Filters/ComplexFilters/complex1.h \
@@ -52,7 +45,17 @@ HEADERS += src/playerinterface.h \
     src/Image/Filters/ConvFilters/M8.h \
     src/Image/Filters/ConvFilters/M9.h \
     src/Image/Filters/ComplexFilters/complex4.h \
-    src/Image/Filters/ComplexFilters/complex2.h
+    src/Image/Filters/ComplexFilters/complex2.h \
+    src/Image/Filters/SamplingFilters/DownSamplingFilters/cubicdownsample.h \
+    src/Image/Filters/SamplingFilters/DownSamplingFilters/downsample.h \
+    src/Image/Filters/SamplingFilters/DownSamplingFilters/downsamplingfilter.h \
+    src/Image/Filters/SamplingFilters/DownSamplingFilters/lineardownsample.h \
+    src/Image/Filters/SamplingFilters/UpSamplingFilters/cubicupsample.h \
+    src/Image/Filters/SamplingFilters/UpSamplingFilters/linearupsample.h \
+    src/Image/Filters/SamplingFilters/UpSamplingFilters/samplingfilter.h \
+    src/Image/Filters/SamplingFilters/UpSamplingFilters/upsample.h \
+    src/Image/Filters/SamplingFilters/UpSamplingFilters/upsamplingfilter.h
+
 
 SOURCES += src/playerinterface.cpp \
     src/openglwidget.cpp \
@@ -61,18 +64,11 @@ SOURCES += src/playerinterface.cpp \
     src/Image/CVideo.cpp \
     src/Image/Filters/filter.cpp \
     src/Image/Filters/LinearFilters/linearfilter.cpp \
-    src/Image/Filters/SamplingFilters/samplingfilter.cpp \
     src/Image/Filters/LinearFilters/redchannel.cpp \
     src/Image/Filters/LinearFilters/greenchannel.cpp \
     src/Image/Filters/LinearFilters/bluechannel.cpp \
     src/Image/Filters/LinearFilters/greychannel.cpp \
     src/Image/Filters/LinearFilters/reliablegreychannel.cpp \
-    src/Image/Filters/SamplingFilters/downsample.cpp \
-    src/Image/Filters/SamplingFilters/lineardownsample.cpp \
-    src/Image/Filters/SamplingFilters/cubicdownsample.cpp \
-    src/Image/Filters/SamplingFilters/upsample.cpp \
-    src/Image/Filters/SamplingFilters/linearupsample.cpp \
-    src/Image/Filters/SamplingFilters/cubicupsample.cpp \
     src/Image/Filters/OtherFilters/blur.cpp \
     src/Image/Filters/OtherFilters/autoadapt.cpp \
     src/Image/Filters/ComplexFilters/complex1.cpp \
@@ -94,8 +90,15 @@ SOURCES += src/playerinterface.cpp \
     src/Image/Filters/ConvFilters/M8.cpp \
     src/Image/Filters/ConvFilters/M9.cpp \
     src/Image/Filters/ComplexFilters/complex4.cpp \
-    src/Image/Filters/ComplexFilters/complex2.cpp
-
+    src/Image/Filters/ComplexFilters/complex2.cpp \
+    src/Image/Filters/SamplingFilters/DownSamplingFilters/cubicdownsample.cpp \
+    src/Image/Filters/SamplingFilters/DownSamplingFilters/downsample.cpp \
+    src/Image/Filters/SamplingFilters/DownSamplingFilters/downsamplingfilter.cpp \
+    src/Image/Filters/SamplingFilters/DownSamplingFilters/lineardownsample.cpp \
+    src/Image/Filters/SamplingFilters/UpSamplingFilters/cubicupsample.cpp \
+    src/Image/Filters/SamplingFilters/UpSamplingFilters/linearupsample.cpp \
+    src/Image/Filters/SamplingFilters/UpSamplingFilters/upsample.cpp \
+    src/Image/Filters/SamplingFilters/UpSamplingFilters/upsamplingfilter.cpp
 
 
 

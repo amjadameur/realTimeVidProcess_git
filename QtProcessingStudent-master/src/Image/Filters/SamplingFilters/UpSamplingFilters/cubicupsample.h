@@ -1,9 +1,9 @@
-#include "samplingfilter.h"
-
 #ifndef CUBICUPSAMPLE_H
 #define CUBICUPSAMPLE_H
 
-class CubicUpSample : public SamplingFilter {
+#include "upsamplingfilter.h"
+
+class CubicUpSample : public UpSamplingFilter {
 
 public :
     void filter(FastImage* bufferIn, FastImage* bufferOut);

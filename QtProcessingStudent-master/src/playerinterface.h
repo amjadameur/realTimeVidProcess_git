@@ -36,12 +36,13 @@
 #include "./Image/Filters/LinearFilters/reliablegreychannel.h"
 
 // Sampling filters
-#include "./Image/Filters/SamplingFilters/downsample.h"
-#include "./Image/Filters/SamplingFilters/lineardownsample.h"
-#include "./Image/Filters/SamplingFilters/cubicdownsample.h"
-#include "./Image/Filters/SamplingFilters/upsample.h"
-#include "./Image/Filters/SamplingFilters/linearupsample.h"
-#include "./Image/Filters/SamplingFilters/cubicupsample.h"
+#include "./Image/Filters/SamplingFilters/DownSamplingFilters/downsample.h"
+#include "./Image/Filters/SamplingFilters/DownSamplingFilters/lineardownsample.h"
+#include "./Image/Filters/SamplingFilters/DownSamplingFilters/cubicdownsample.h"
+
+#include "./Image/Filters/SamplingFilters/UpSamplingFilters/upsample.h"
+#include "./Image/Filters/SamplingFilters/UpSamplingFilters/linearupsample.h"
+#include "./Image/Filters/SamplingFilters/UpSamplingFilters/cubicupsample.h"
 
 // Other Filters
 #include "./Image/Filters/OtherFilters/blur.h"

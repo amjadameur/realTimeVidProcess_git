@@ -14,7 +14,7 @@ void C3::filter(FastImage* bufferIn, FastImage* bufferOut) {
     reliableGreyFilter.filter(tmpIn, bufferOut);
     tmpIn = bufferOut;
 
-    UpSampleFilter.filter(tmpIn, bufferOut);
+    linearUpSampleFilter.filter(tmpIn, bufferOut);
     tmpIn = NULL;
 }
 

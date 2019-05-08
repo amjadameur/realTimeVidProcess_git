@@ -1,9 +1,9 @@
-#include "samplingfilter.h"
-
 #ifndef LINEARDOWNSAMPLE
 #define LINEARDOWNSAMPLE
 
-class LinearDownSample : public SamplingFilter {
+#include "downsamplingfilter.h"
+
+class LinearDownSample : public DownSamplingFilter {
 
 public :
     void filter(FastImage* bufferIn, FastImage* bufferOut);

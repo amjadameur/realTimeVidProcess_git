@@ -329,7 +329,7 @@ void PlayerInterface::drawNextFrame()
    if( _listeFiltres->currentIndex() == 0 ){
         bufferOut->FastImageCpy(bufferIn);
     } else {
-        filters[BLUR]->filter(bufferIn, bufferOut);
+        filters[DWSAMPLE]->filter(bufferIn, bufferOut);
    }
 
 
