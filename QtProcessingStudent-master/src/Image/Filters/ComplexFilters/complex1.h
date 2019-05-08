@@ -5,14 +5,14 @@
 
 #include "../SamplingFilters/cubicdownsample.h"
 
-class Complex1 {
+class Complex1 : public Filter {
 private :
     FastImage *tmpIn;
 
     CubicDownSample cubicDownSampleFilter;
 
 public :
-    void filter(FastImage* bufferIn, FastImage* bufferOut);
+    virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
 #endif // DOUBLECUBICDOWNSAMPLE

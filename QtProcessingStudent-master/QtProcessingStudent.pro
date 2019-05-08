@@ -35,7 +35,22 @@ HEADERS += src/playerinterface.h \
     src/Image/Filters/OtherFilters/autoadapt.h \
     src/Image/Filters/ComplexFilters/complex1.h \
     src/Image/Filters/ComplexFilters/complex3.h \
-    src/Image/Filters/OtherFilters/inverse.h
+    src/Image/Filters/OtherFilters/inverse.h \
+    src/Image/Filters/ConvFilters/B0.h \
+    src/Image/Filters/ConvFilters/B1.h \
+    src/Image/Filters/ConvFilters/B2.h \
+    src/Image/Filters/ConvFilters/B3.h \
+    src/Image/Filters/ConvFilters/Convfilter.h \
+    src/Image/Filters/ConvFilters/M0.h \
+    src/Image/Filters/ConvFilters/M1.h \
+    src/Image/Filters/ConvFilters/M2.h \
+    src/Image/Filters/ConvFilters/M3.h \
+    src/Image/Filters/ConvFilters/M4.h \
+    src/Image/Filters/ConvFilters/M5.h \
+    src/Image/Filters/ConvFilters/M6.h \
+    src/Image/Filters/ConvFilters/M7.h \
+    src/Image/Filters/ConvFilters/M8.h \
+    src/Image/Filters/ConvFilters/M9.h
 
 SOURCES += src/playerinterface.cpp \
     src/openglwidget.cpp \
@@ -60,6 +75,25 @@ SOURCES += src/playerinterface.cpp \
     src/Image/Filters/OtherFilters/autoadapt.cpp \
     src/Image/Filters/ComplexFilters/complex1.cpp \
     src/Image/Filters/ComplexFilters/complex3.cpp \
-    src/Image/Filters/OtherFilters/inverse.cpp
+    src/Image/Filters/OtherFilters/inverse.cpp \
+    src/Image/Filters/ConvFilters/B0.cpp \
+    src/Image/Filters/ConvFilters/B1.cpp \
+    src/Image/Filters/ConvFilters/B2.cpp \
+    src/Image/Filters/ConvFilters/B3.cpp \
+    src/Image/Filters/ConvFilters/Convfilter.cpp \
+    src/Image/Filters/ConvFilters/M0.cpp \
+    src/Image/Filters/ConvFilters/M1.cpp \
+    src/Image/Filters/ConvFilters/M2.cpp \
+    src/Image/Filters/ConvFilters/M3.cpp \
+    src/Image/Filters/ConvFilters/M4.cpp \
+    src/Image/Filters/ConvFilters/M5.cpp \
+    src/Image/Filters/ConvFilters/M6.cpp \
+    src/Image/Filters/ConvFilters/M7.cpp \
+    src/Image/Filters/ConvFilters/M8.cpp \
+    src/Image/Filters/ConvFilters/M9.cpp
+
+
+
+
 RESOURCES +=
 FORMS +=
