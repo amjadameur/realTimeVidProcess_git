@@ -254,9 +254,10 @@ PlayerInterface::~PlayerInterface()
     delete bufferIn;
     delete bufferOut;
 
-   // delete blurFilter;
-   // delete c3;
-    //delete upSampleFilter;
+    for(int i = 0; i < NB_FILTERS; i++) {
+        delete filters[i];
+        filters[i] = NULL;
+    }
 }
 
 
@@ -323,14 +324,12 @@ void PlayerInterface::drawNextFrame()
 
     startC = clock(); // ON RELANCE LE COMPTEUR...
 
-   //blurFilter->refreshPrevIm(bufferIn);
+    filters[BLUR]->refreshPrevIm(bufferIn);
 
    if( _listeFiltres->currentIndex() == 0 ){
         bufferOut->FastImageCpy(bufferIn);
-
-
     } else {
-
+        filters[BLUR]->filter(bufferIn, bufferOut);
    }
 
 

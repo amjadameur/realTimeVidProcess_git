@@ -21,6 +21,7 @@ class Filter {
 
 public :
     virtual void filter(FastImage *bufferIn, FastImage *bufferOut) = 0;
+    virtual void refreshPrevIm(FastImage* bufferIn) {};
     virtual ~Filter() {};
 };
 

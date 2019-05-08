@@ -110,6 +110,8 @@
 #define  COMPLEX3             30
 #define  COMPLEX4             31
 
+#define  NB_FILTERS           32
+
 class PlayerInterface : public QWidget
 {
     Q_OBJECT
