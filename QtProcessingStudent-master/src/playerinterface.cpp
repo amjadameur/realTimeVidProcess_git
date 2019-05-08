@@ -144,6 +144,7 @@ PlayerInterface::PlayerInterface()
     filters.push_back(new DownSample());
     filters.push_back(new LinearDownSample());
     filters.push_back(new CubicDownSample());
+
     filters.push_back(new UpSample());
     filters.push_back(new LinearUpSample());
     filters.push_back(new CubicUpSample());
@@ -329,7 +330,7 @@ void PlayerInterface::drawNextFrame()
    if( _listeFiltres->currentIndex() == 0 ){
         bufferOut->FastImageCpy(bufferIn);
     } else {
-        filters[BLUR]->filter(bufferIn, bufferOut);
+        filters[CUBICDWSAMPLE]->filter(bufferIn, bufferOut);
    }
 
 

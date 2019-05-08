@@ -52,7 +52,6 @@ HEADERS += src/playerinterface.h \
     src/Image/Filters/SamplingFilters/DownSamplingFilters/lineardownsample.h \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/cubicupsample.h \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/linearupsample.h \
-    src/Image/Filters/SamplingFilters/UpSamplingFilters/samplingfilter.h \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsample.h \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsamplingfilter.h
 

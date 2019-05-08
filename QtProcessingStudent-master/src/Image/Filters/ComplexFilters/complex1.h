@@ -9,9 +9,12 @@ class C1 : public Filter {
 private :
     FastImage *tmpIn;
 
-    CubicDownSample cubicDownSampleFilter;
+    DownSamplingFilter *cubicDownSampleFilter;
 
 public :
+    C1();
+    ~C1();
+
     virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
