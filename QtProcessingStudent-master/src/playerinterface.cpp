@@ -301,10 +301,9 @@ void PlayerInterface::drawNextFrame()
    if( _listeFiltres->currentIndex() == 0 ){
         bufferOut->FastImageCpy(bufferIn);
 
+
     } else {
-       Filter *m0 = new M3();
-       m0->filter(bufferIn, bufferOut);
-       delete m0;
+
    }
 
 

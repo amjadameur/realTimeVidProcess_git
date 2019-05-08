@@ -50,7 +50,9 @@ HEADERS += src/playerinterface.h \
     src/Image/Filters/ConvFilters/M6.h \
     src/Image/Filters/ConvFilters/M7.h \
     src/Image/Filters/ConvFilters/M8.h \
-    src/Image/Filters/ConvFilters/M9.h
+    src/Image/Filters/ConvFilters/M9.h \
+    src/Image/Filters/ComplexFilters/complex4.h \
+    src/Image/Filters/ComplexFilters/complex2.h
 
 SOURCES += src/playerinterface.cpp \
     src/openglwidget.cpp \
@@ -90,7 +92,9 @@ SOURCES += src/playerinterface.cpp \
     src/Image/Filters/ConvFilters/M6.cpp \
     src/Image/Filters/ConvFilters/M7.cpp \
     src/Image/Filters/ConvFilters/M8.cpp \
-    src/Image/Filters/ConvFilters/M9.cpp
+    src/Image/Filters/ConvFilters/M9.cpp \
+    src/Image/Filters/ComplexFilters/complex4.cpp \
+    src/Image/Filters/ComplexFilters/complex2.cpp
 
 
 

@@ -67,7 +67,9 @@
 
 // Complex filters
 #include "./Image/Filters/ComplexFilters/complex1.h"
+#include "./Image/Filters/ComplexFilters/complex2.h"
 #include "./Image/Filters/ComplexFilters/complex3.h"
+#include "./Image/Filters/ComplexFilters/complex4.h"
 
 #define POSITION_RESOLUTION 10000
 
@@ -85,9 +87,26 @@
 #define  BLUR                 12
 #define  AUTOADAPT            13
 #define  INVERSE              14
-#define  C1                   15
-#define  C3                   16
 
+#define  CONVB0               15
+#define  CONVB1               16
+#define  CONVB2               17
+#define  CONVB3               18
+#define  CONVM0               19
+#define  CONVM1               20
+#define  CONVM2               21
+#define  CONVM3               22
+#define  CONVM4               23
+#define  CONVM5               24
+#define  CONVM6               25
+#define  CONVM7               26
+#define  CONVM8               27
+#define  CONVM9               28
+
+#define  C1                   29
+#define  C2                   30
+#define  C3                   31
+#define  C4                   32
 
 class PlayerInterface : public QWidget
 {
