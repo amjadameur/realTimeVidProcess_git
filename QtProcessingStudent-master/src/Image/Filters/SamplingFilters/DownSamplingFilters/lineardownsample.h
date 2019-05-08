@@ -6,7 +6,7 @@
 class LinearDownSample : public DownSamplingFilter {
 
 public :
-    virtual void rgbCompute(FastImage *bufferIn, int x, int y);
+    virtual void rgbCompute(FastImage *bufferIn, int y, int x);
 };
 
 

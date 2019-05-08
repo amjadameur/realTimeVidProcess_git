@@ -1,13 +1,13 @@
 #include "upsamplingfilter.h"
 
-FastImage *UpSamplingFilter::increaseImSize(FastImage *bufferIn) {
+FastImage *UpSamplingFilter::fastImageResize(FastImage *bufferIn) {
     // Increase Image Size
     int height = 2*bufferIn->height();
     int width  = 2*bufferIn->width() ;
     return new FastImage(height, width);
 }
 
-void UpSamplingFilter::rgbAssign(FastImage *bufferOut, int x, int y) {
+void UpSamplingFilter::rgbAssign(FastImage *bufferOut, int y, int x) {
     for(int i = 0; i<2; i++) {
         for(int j = 0; j<2; j++) {
             imOutR(2*y+i, 2*x+j, rVal);
@@ -17,18 +17,4 @@ void UpSamplingFilter::rgbAssign(FastImage *bufferOut, int x, int y) {
     }
 }
 
-void UpSamplingFilter::filter(FastImage *bufferIn, FastImage *bufferOut) {
-    FastImage *tmpOut = increaseImSize(bufferIn);
 
-    for(int y=0; y<bufferIn->height()-1; y++){
-        for(int x=0; x<bufferIn->width()-1; x++){
-
-            rgbCompute(bufferIn, x, y);
-
-            rgbAssign(tmpOut, x, y);
-
-        }
-    }
-
-    bufferOut->FastImagePointer(tmpOut);
-}

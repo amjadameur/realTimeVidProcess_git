@@ -1,16 +1,16 @@
 #ifndef DOWNSAMPLINGFILTER_H
 #define DOWNSAMPLINGFILTER_H
 
-#include "../../filter.h"
+#include "../samplingfilter.h"
+#include <math.h>
 
-class DownSamplingFilter : public Filter {
+class DownSamplingFilter : public SamplingFilter {
 protected :
     int rVal, gVal, bVal;
 
 public:
-    FastImage* decreaseImSize(FastImage* bufferIn);
-    virtual void rgbCompute(FastImage* bufferIn, int x, int y) = 0;
-    virtual void filter(FastImage *bufferIn, FastImage *bufferOut);
+    FastImage* fastImageResize(FastImage* bufferIn);
+    virtual void rgbAssign (FastImage* bufferOut, int y, int x);
 };
 
 #endif // DOWNSAMPLINGFILTER_H
