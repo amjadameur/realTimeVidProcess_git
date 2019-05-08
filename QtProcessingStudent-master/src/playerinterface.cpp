@@ -330,7 +330,7 @@ void PlayerInterface::drawNextFrame()
    if( _listeFiltres->currentIndex() == 0 ){
         bufferOut->FastImageCpy(bufferIn);
     } else {
-        filters[CUBICDWSAMPLE]->filter(bufferIn, bufferOut);
+        filters[COMPLEX1]->filter(bufferIn, bufferOut);
    }
 
 
