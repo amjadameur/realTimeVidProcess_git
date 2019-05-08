@@ -324,12 +324,12 @@ void PlayerInterface::drawNextFrame()
 
     startC = clock(); // ON RELANCE LE COMPTEUR...
 
-    filters[BLUR]->refreshPrevIm(bufferIn);
+   ((Blur*) filters[BLUR])->refreshPrevIm(bufferIn);
 
    if( _listeFiltres->currentIndex() == 0 ){
         bufferOut->FastImageCpy(bufferIn);
     } else {
-        filters[DWSAMPLE]->filter(bufferIn, bufferOut);
+        filters[BLUR]->filter(bufferIn, bufferOut);
    }
 
 
