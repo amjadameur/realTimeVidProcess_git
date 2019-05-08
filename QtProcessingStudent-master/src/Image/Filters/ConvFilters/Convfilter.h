@@ -15,6 +15,8 @@ public :
 
 
     void setMatrix(int matrix[][3]);
+
+    bool XYOutOfRange(int x, int y, int width, int height);
     virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 
