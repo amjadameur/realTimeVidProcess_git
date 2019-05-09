@@ -43,7 +43,6 @@ PlayerInterface::PlayerInterface()
     //
     // DECLARATION DE TOUS LES PLUGINS DE TRAITEMENT VIDEO
     //
-    _listeFiltres->addItem( "None" );
     _listeFiltres->addItem( "Red Channel" );
     _listeFiltres->addItem( "Green Channel" );
     _listeFiltres->addItem( "Blue Channel" );
@@ -61,8 +60,32 @@ PlayerInterface::PlayerInterface()
     _listeFiltres->addItem( "Auto Adapt");
     _listeFiltres->addItem( "Inverse");
 
-    _listeFiltres->addItem( "Double Cubic Down Sample");
-    _listeFiltres->addItem( "Blur Linear Up Sample");
+    _listeFiltres->addItem("B0");
+    _listeFiltres->addItem("B1");
+    _listeFiltres->addItem("B2");
+    _listeFiltres->addItem("B3");
+    _listeFiltres->addItem("M0");
+    _listeFiltres->addItem("M1");
+    _listeFiltres->addItem("M2");
+    _listeFiltres->addItem("M3");
+    _listeFiltres->addItem("M4");
+    _listeFiltres->addItem("M5");
+    _listeFiltres->addItem("M6");
+    _listeFiltres->addItem("M7");
+    _listeFiltres->addItem("M8");
+    _listeFiltres->addItem("M9");
+
+
+    _listeFiltres->addItem( "Complex 1");
+    _listeFiltres->addItem( "Complex 2");
+    _listeFiltres->addItem( "Complex 3");
+    _listeFiltres->addItem( "Complex 4");
+
+
+
+
+
+
     _isPlaying = false;
 
     //
@@ -175,10 +198,7 @@ PlayerInterface::PlayerInterface()
 
 
 
-    /*fifo = new int[NB_FILTERS];
-    for(int i = 0; i<NB_FILTERS; i++) {
-        fifo[i] = 0;
-    }*/
+
     /////////////////////////////////////////////////////////////////
 
     l4->addWidget(g1);
@@ -250,7 +270,7 @@ PlayerInterface::PlayerInterface()
 PlayerInterface::~PlayerInterface()
 {
     //free(previousFrames);
-    delete bufferTmp1;
+    //delete bufferTmp1;
     delete bufferTmp2;
     delete bufferIn;
     delete bufferOut;
@@ -294,7 +314,7 @@ void PlayerInterface::drawNextFrame()
         if( bufferIn == NULL ){
             bufferIn  = new FastImage( 2, 2 );
             bufferOut = new FastImage( bufferIn );
-            bufferTmp1 = new FastImage( bufferIn );
+           // bufferTmp1 = new FastImage( bufferIn );
             bufferTmp2 = new FastImage( bufferIn );
         }
 
@@ -327,11 +347,22 @@ void PlayerInterface::drawNextFrame()
 
    ((Blur*) filters[BLUR])->refreshPrevIm(bufferIn);
 
-   if( _listeFiltres->currentIndex() == 0 ){
+   if(chosenFilters.size() == 0){
         bufferOut->FastImageCpy(bufferIn);
-    } else {
-        filters[CONVM7]->filter(bufferIn, bufferOut);
+
+   } else {
+        int fitlerIdx;
+        bufferTmp1 = bufferIn;
+
+        for(unsigned int i = 0; i<chosenFilters.size(); i++) {
+            fitlerIdx = chosenFilters[i];
+            filters[fitlerIdx]->filter(bufferTmp1, bufferOut);
+            bufferTmp1 = bufferOut;
+        }
+
+        bufferTmp1 = NULL;
    }
+
 
 
 
@@ -430,7 +461,9 @@ void PlayerInterface::openFile(QString* name)
 void PlayerInterface::changePosition(int newPosition)
 {
     cout << "(II) Un changement de filtre a ete enregistre... (" << newPosition << ")"  << endl;
-   /* for(int i = 0; i<NB_FILTERS; i++) {
+    chosenFilters.push_back(newPosition);
+
+    /* for(int i = 0; i<NB_FILTERS; i++) {
         if (fifo[i] == 0) {
             fifo[i] = newPosition;
             filter1->setText( tr("filter 1 : ") + QVariant(fifo[0]).toString() );

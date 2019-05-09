@@ -142,7 +142,7 @@ class PlayerInterface : public QWidget
 
     vector<Filter*> filters;
 
-    int* fifo;
+    vector<int> chosenFilters;
     //////////////////////////////////////
 
     // VARIABLE UTILISEE AFIN DE MINIMISER LE NOMBRE DE MISES A JOUR DE
