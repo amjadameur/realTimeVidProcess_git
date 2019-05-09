@@ -3,12 +3,14 @@
 #define debug false
 #include "time.h"
 
+
 //
 // CONSTRUCTEUR DE LA CLASSE EN CHARGE DE CREER L'INTERFACE GRAPHIQUE DU PLAYER
 //
 PlayerInterface::PlayerInterface()
 : QWidget(0, Qt::Window)
 {
+
     //
     //	INITIALISATION DES POINTEURS SUR LES "IMAGES"
     //
@@ -168,46 +170,6 @@ PlayerInterface::PlayerInterface()
     chosenFiltersHBox->addLayout(upSwapVBox);
     chosenFiltersHBox->addLayout(dwSwapVBox);
 
-    ///////////////////////////////////////////////////////////////////
-    filters.push_back(new RedChannel());
-    filters.push_back(new GreenChannel());
-    filters.push_back(new BlueChannel());
-    filters.push_back(new GreyChannel());
-    filters.push_back(new ReliableGreyChannel());
-
-    filters.push_back(new DownSample());
-    filters.push_back(new LinearDownSample());
-    filters.push_back(new CubicDownSample());
-
-    filters.push_back(new UpSample());
-    filters.push_back(new LinearUpSample());
-    filters.push_back(new CubicUpSample());
-
-    filters.push_back(new Blur());
-    filters.push_back(new AutoAdapt());
-    filters.push_back(new Inverse());
-
-    filters.push_back(new B0());
-    filters.push_back(new B1());
-    filters.push_back(new B2());
-    filters.push_back(new B3());
-    filters.push_back(new M0());
-    filters.push_back(new M1());
-    filters.push_back(new M2());
-    filters.push_back(new M3());
-    filters.push_back(new M4());
-    filters.push_back(new M5());
-    filters.push_back(new M6());
-    filters.push_back(new M7());
-    filters.push_back(new M8());
-    filters.push_back(new M9());
-
-    filters.push_back(new C1());
-    filters.push_back(new C2());
-    filters.push_back(new C3((Blur*)  filters[BLUR]));
-    filters.push_back(new C4());
-
-
 
     l4->addWidget(g1);
     l4->addWidget(g2);
@@ -284,10 +246,9 @@ PlayerInterface::~PlayerInterface()
     delete bufferIn;
     delete bufferOut;
 
-    for(int i = 0; i < NB_FILTERS; i++) {
-        delete filters[i];
-        filters[i] = NULL;
-    }
+    delete fastImageFilters;
+
+
 }
 
 
@@ -354,25 +315,8 @@ void PlayerInterface::drawNextFrame()
 
     startC = clock(); // ON RELANCE LE COMPTEUR...
 
-   ((Blur*) filters[BLUR])->refreshPrevIm(bufferIn);
 
-   if(chosenFilters.size() == 0){
-        bufferOut->FastImageCpy(bufferIn);
-
-   } else {
-        int fitlerIdx;
-        bufferTmp1 = bufferIn;
-
-        for(unsigned int i = 0; i<chosenFilters.size(); i++) {
-            fitlerIdx = chosenFilters[i];
-            filters[fitlerIdx]->filter(bufferTmp1, bufferOut);
-            bufferTmp1 = bufferOut;
-        }
-
-        bufferTmp1 = NULL;
-   }
-
-
+    fastImageFilters->filter(bufferIn, bufferOut);
 
 
     //
@@ -442,6 +386,9 @@ void PlayerInterface::openFile(QString* name)
     // ON CREE UN OBJET VIDEO ET ON PREFETCH LA PREMIERE IMAGE
     c = new CVideo( fileName.toStdString().c_str() );
     c->start();
+
+    // allocate filters
+    fastImageFilters = new Filters(chosenFilters);
 
     // ON ACTIVE LES BOUTONS EN CONSEQUENCE
     start->setEnabled( true );

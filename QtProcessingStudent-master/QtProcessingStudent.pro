@@ -54,7 +54,9 @@ HEADERS += src/playerinterface.h \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/linearupsample.h \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsample.h \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsamplingfilter.h \
-    src/Image/Filters/SamplingFilters/samplingfilter.h
+    src/Image/Filters/SamplingFilters/samplingfilter.h \
+    src/Image/Filters/filters.h
+
 
 
 SOURCES += src/playerinterface.cpp \
@@ -99,7 +101,8 @@ SOURCES += src/playerinterface.cpp \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/linearupsample.cpp \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsample.cpp \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsamplingfilter.cpp \
-    src/Image/Filters/SamplingFilters/samplingfilter.cpp
+    src/Image/Filters/SamplingFilters/samplingfilter.cpp \
+    src/Image/Filters/filters.cpp
 
 
 
