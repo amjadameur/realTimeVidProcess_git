@@ -579,10 +579,23 @@ void PlayerInterface::resetFilters(){
 }
 
 void PlayerInterface::deleteFilter() {
-    cout << "delete button clicked" << endl;
+    // get a pointer to the signal sender, so that we know which filter should be deleted
     QPushButton *obj = (QPushButton*) sender();
     int filterIdx = (obj->property("filterIdx")).toInt();
 
+    // deleting the corresponding filter from chosenFilter
     vector<int>::iterator it = chosenFilters.begin();
     chosenFilters.erase(it+filterIdx);
+
+    // deleting the corresponding filter from the goupeBox of QLabel
+    QLayoutItem *layoutItem;
+    layoutItem = chosenFiltersVBox->takeAt(filterIdx);
+    delete layoutItem->widget();
+    delete layoutItem;
+
+    // deleting the corresponding filter from the goupeBox of QPushButton
+    layoutItem = deleteFiltersVBox->takeAt(filterIdx);
+    delete layoutItem->widget();
+    delete layoutItem;
+
 }
