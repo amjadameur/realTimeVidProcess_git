@@ -137,11 +137,12 @@ class PlayerInterface : public QWidget
     QLabel *sTime;
 
     ////////////////////// to be discarded
-    QLabel *filter1;
-    QLabel *filter2;
+    QVBoxLayout *chosenFiltersVBox;
+    QVBoxLayout *deleteFiltersVBox;
+
+    QHBoxLayout *chosenFiltersHBox;
 
     vector<Filter*> filters;
-
     vector<int> chosenFilters;
     //////////////////////////////////////
 
@@ -206,6 +207,7 @@ public slots:
     void unlockFrameRate();
 
     void stepOneFrame();
+    void deleteFilter();
     void resetFilters();
 };
 

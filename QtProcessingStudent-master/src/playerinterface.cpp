@@ -40,6 +40,7 @@ PlayerInterface::PlayerInterface()
     QVBoxLayout *l4     = new QVBoxLayout;
     setLayout(layout);
 
+
     //
     // DECLARATION DE TOUS LES PLUGINS DE TRAITEMENT VIDEO
     //
@@ -149,15 +150,16 @@ PlayerInterface::PlayerInterface()
 
 
     ////////////////////////////////////////////////////////////////
-    /// Mine :
-    QGroupBox   *myWidget = new QGroupBox(tr("My Group Box"));
-    QVBoxLayout *myBox = new QVBoxLayout;
-    filter1  = new QLabel(tr("filter 1"));
-    filter2  = new QLabel(tr("filter 2"));
-    myBox->addWidget( filter1  );
-    myBox->addWidget( filter2  );
-    myWidget->setLayout(myBox);
+    QGroupBox   *chosenFiltersWidget = new QGroupBox(tr("My Group Box"));
+    chosenFiltersVBox = new QVBoxLayout;
+    deleteFiltersVBox = new QVBoxLayout;
+    chosenFiltersHBox = new QHBoxLayout;
 
+    chosenFiltersWidget->setLayout(chosenFiltersHBox);
+    chosenFiltersHBox->addLayout(chosenFiltersVBox);
+    chosenFiltersHBox->addLayout(deleteFiltersVBox);
+
+    ///////////////////////////////////////////////////////////////////
     filters.push_back(new RedChannel());
     filters.push_back(new GreenChannel());
     filters.push_back(new BlueChannel());
@@ -198,15 +200,12 @@ PlayerInterface::PlayerInterface()
 
 
 
-
-    /////////////////////////////////////////////////////////////////
-
     l4->addWidget(g1);
     l4->addWidget(g2);
     l4->addWidget(g3);
     l4->addWidget(g4);
     l4->addWidget(pp);
-    l4->addWidget(myWidget);
+    l4->addWidget(chosenFiltersWidget);
 
     layout->addLayout(l4);
 
@@ -460,17 +459,19 @@ void PlayerInterface::openFile(QString* name)
 //
 void PlayerInterface::changePosition(int newPosition)
 {
-    cout << "(II) Un changement de filtre a ete enregistre... (" << newPosition << ")"  << endl;
+    //cout << "(II) Un changement de filtre a ete enregistre... (" << newPosition << ")"  << endl;
+    QLabel      *chosenFilter  = new QLabel( _listeFiltres->currentText() );
+    QPushButton *deleteFilter  = new QPushButton( "delete", this );
+
+    chosenFiltersVBox->addWidget( chosenFilter  );
+    deleteFiltersVBox->addWidget( deleteFilter  );
+
+    int currentIdx = (int) chosenFilters.size();
+    deleteFilter->setProperty("filterIdx", QVariant(currentIdx) );
     chosenFilters.push_back(newPosition);
 
-    /* for(int i = 0; i<NB_FILTERS; i++) {
-        if (fifo[i] == 0) {
-            fifo[i] = newPosition;
-            filter1->setText( tr("filter 1 : ") + QVariant(fifo[0]).toString() );
-            filter2->setText( tr("filter 2 : ") + QVariant(fifo[1]).toString() );
-            break;
-        }
-    }*/
+    connect(deleteFilter, SIGNAL(clicked()), this, SLOT(deleteFilter()) );
+
     if( _isPlaying == true ) return;
     drawNextFrame();
 }
@@ -575,4 +576,13 @@ void PlayerInterface::stepOneFrame(){
 //
 void PlayerInterface::resetFilters(){
     _listeFiltres->setCurrentIndex(0);
+}
+
+void PlayerInterface::deleteFilter() {
+    cout << "delete button clicked" << endl;
+    QPushButton *obj = (QPushButton*) sender();
+    int filterIdx = (obj->property("filterIdx")).toInt();
+
+    vector<int>::iterator it = chosenFilters.begin();
+    chosenFilters.erase(it+filterIdx);
 }
