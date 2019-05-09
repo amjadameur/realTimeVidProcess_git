@@ -593,8 +593,9 @@ void PlayerInterface::resetFilters(){
 
 void PlayerInterface::deleteFilter() {
     // get a pointer to the signal sender, so that we know which filter should be deleted
-    QWidget *item = (QWidget*) sender();
-    int filterIdx = deleteFiltersVBox->indexOf(item);
+    QWidget *pressedButton = (QWidget*) sender();
+    int filterIdx = deleteFiltersVBox->indexOf(pressedButton);
+    pressedButton = NULL;
 
     // deleting the corresponding filter from chosenFilter
     vector<int>::iterator it = chosenFilters.begin();
@@ -622,9 +623,9 @@ void PlayerInterface::deleteFilter() {
 }
 
 void PlayerInterface::upSwapFilters() {
-    QWidget *widget = (QWidget*) sender();
-    int currentIdx = upSwapVBox->indexOf(widget);
-    widget = NULL;
+    QWidget *pressedButton = (QWidget*) sender();
+    int currentIdx = upSwapVBox->indexOf(pressedButton);
+    pressedButton = NULL;
 
     // we don't move an element located in the top of the list
     if (currentIdx) {
@@ -647,7 +648,27 @@ void PlayerInterface::upSwapFilters() {
 
 
 void PlayerInterface::dwSwapFilters() {
-    QWidget *item = (QWidget*) sender();
-    int filterIdx = dwSwapVBox->indexOf(item);
+    QWidget *pressedButton = (QWidget*) sender();
+    int currentIdx = dwSwapVBox->indexOf(pressedButton);
+    pressedButton = NULL;
+
+    int nbChosenFilters = (int) chosenFilters.size();
+
+    // we don't move an element located at the bottom of the list
+    if (currentIdx != nbChosenFilters-1) {
+        QLabel *currentButton = (QLabel*) (chosenFiltersVBox->itemAt(currentIdx)->widget());
+        QLabel *nextButton    = (QLabel*) chosenFiltersVBox->itemAt(currentIdx+1)->widget();
+
+        QString currentText = currentButton->text();
+        QString nextText    = nextButton   ->text();
+
+        currentButton->setText(nextText);
+        nextButton   ->setText(currentText);
+
+        currentButton = NULL;
+        nextButton    = NULL;
+
+        swap(chosenFilters[currentIdx], chosenFilters[currentIdx+1]);
+    }
 
 }
