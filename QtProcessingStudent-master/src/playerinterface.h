@@ -122,6 +122,7 @@ class PlayerInterface : public QWidget
     QPushButton *pause;
     QPushButton *nextFrame;
     QPushButton *filterFrame;
+    QPushButton *resetFilter;
 
     // LABELS UTILISES DANS L'INTERFACE AFIN DE FOURNIR DES INFORMATIONS
     // SUR LES FLUX VIDEO MANIPULES

@@ -102,11 +102,13 @@ PlayerInterface::PlayerInterface()
     nextFrame   = new QPushButton( "Next Frame", this );
     pause       = new QPushButton( "Switch to camera", this );
     filterFrame = new QPushButton( "Limit 24fps", this );
+    resetFilter = new QPushButton( "reset filters", this );
 
     pause->setEnabled( false );
     start->setEnabled( false );
     nextFrame->setEnabled( false );
     filterFrame->setEnabled( false );
+    resetFilter->setEnabled( false );
 
     // ON CREE UN REGROUPEMENT POUR L'ENSEMBLE DES ELEMENTS LIES AU FILTRAGE
     QGroupBox   *g1 = new QGroupBox(tr("Filter processing"));
@@ -120,6 +122,7 @@ PlayerInterface::PlayerInterface()
     ac->addWidget(start);
     ac->addWidget(nextFrame);
     ac->addWidget(filterFrame);
+    ac->addWidget(resetFilter);
     g2->setLayout(ac);
 
     QGroupBox   *g3 = new QGroupBox(tr("Input video informations"));
@@ -252,6 +255,7 @@ PlayerInterface::PlayerInterface()
     connect(pause,          SIGNAL(clicked()),       this, SLOT(openFile())         );
     connect(nextFrame,      SIGNAL(clicked()),       this, SLOT(stepOneFrame())     );
     connect(filterFrame,    SIGNAL(clicked()),       this, SLOT(unlockFrameRate())  );
+    connect(resetFilter,    SIGNAL(clicked()),       this, SLOT(resetFilters())  );
     connect(_listeFiltres,  SIGNAL(activated(int)),  this, SLOT(changePosition(int)));
 
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
@@ -443,6 +447,7 @@ void PlayerInterface::openFile(QString* name)
     start->setEnabled( true );
     nextFrame->setEnabled( true );
     filterFrame->setEnabled( true );
+    resetFilter->setEnabled( true );
 
     // ON AFFICHE LA PREMIERE IMAGE DE LA VIDEO
     _isPlaying = true;
@@ -466,8 +471,6 @@ void PlayerInterface::openFile(QString* name)
 void PlayerInterface::changePosition(int newPosition)
 {
     //cout << "(II) Un changement de filtre a ete enregistre... (" << newPosition << ")"  << endl;
-     int currentIdx = (int) chosenFilters.size();
-
     QLabel      *chosenFilter  = new QLabel( _listeFiltres->currentText() );
     QPushButton *deleteFilter  = new QPushButton( "delete", this);
     QPushButton *upSwapFilter  = new QPushButton( "Up"    , this);
@@ -584,11 +587,30 @@ void PlayerInterface::stepOneFrame(){
     cout << "(II) FIN PlayerInterface::stepOneFrame()" << endl;
 }
 
-//
-// METHODE INVOQUEE LORSQUE L'UTILISATEUR DEMANDE L'AVANCEMENT MANUEL D'UNE IMAGE
-//
+
 void PlayerInterface::resetFilters(){
-    _listeFiltres->setCurrentIndex(0);
+    if(chosenFilters.size()) {
+        QLayoutItem *item;
+        for(unsigned int i = 0; i<chosenFilters.size(); i++) {
+            item = chosenFiltersVBox->takeAt(0);
+            delete item->widget();
+            delete item;
+
+            item = deleteFiltersVBox->takeAt(0);
+            delete item->widget();
+            delete item;
+
+            item = upSwapVBox->takeAt(0);
+            delete item->widget();
+            delete item;
+
+            item = dwSwapVBox->takeAt(0);
+            delete item->widget();
+            delete item;
+        }
+        item = NULL;
+        chosenFilters.clear();
+    }
 }
 
 void PlayerInterface::deleteFilter() {
