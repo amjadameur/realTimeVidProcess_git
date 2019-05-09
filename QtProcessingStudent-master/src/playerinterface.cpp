@@ -153,11 +153,17 @@ PlayerInterface::PlayerInterface()
     QGroupBox   *chosenFiltersWidget = new QGroupBox(tr("My Group Box"));
     chosenFiltersVBox = new QVBoxLayout;
     deleteFiltersVBox = new QVBoxLayout;
+    upSwapVBox        = new QVBoxLayout;
+    dwSwapVBox        = new QVBoxLayout;
+
     chosenFiltersHBox = new QHBoxLayout;
 
     chosenFiltersWidget->setLayout(chosenFiltersHBox);
+
     chosenFiltersHBox->addLayout(chosenFiltersVBox);
     chosenFiltersHBox->addLayout(deleteFiltersVBox);
+    chosenFiltersHBox->addLayout(upSwapVBox);
+    chosenFiltersHBox->addLayout(dwSwapVBox);
 
     ///////////////////////////////////////////////////////////////////
     filters.push_back(new RedChannel());
@@ -460,17 +466,24 @@ void PlayerInterface::openFile(QString* name)
 void PlayerInterface::changePosition(int newPosition)
 {
     //cout << "(II) Un changement de filtre a ete enregistre... (" << newPosition << ")"  << endl;
+     int currentIdx = (int) chosenFilters.size();
+
     QLabel      *chosenFilter  = new QLabel( _listeFiltres->currentText() );
-    QPushButton *deleteFilter  = new QPushButton( "delete", this );
+    QPushButton *deleteFilter  = new QPushButton( "delete", this);
+    QPushButton *upSwapFilter  = new QPushButton( "Up"    , this);
+    QPushButton *dwSwapFilter  = new QPushButton( "Down"  , this);
 
     chosenFiltersVBox->addWidget( chosenFilter  );
     deleteFiltersVBox->addWidget( deleteFilter  );
+    upSwapVBox       ->addWidget( upSwapFilter  );
+    dwSwapVBox       ->addWidget( dwSwapFilter  );
 
-    int currentIdx = (int) chosenFilters.size();
-    deleteFilter->setProperty("filterIdx", QVariant(currentIdx) );
+    // adding the filter in the chosen filter vector
     chosenFilters.push_back(newPosition);
 
     connect(deleteFilter, SIGNAL(clicked()), this, SLOT(deleteFilter()) );
+    connect(upSwapFilter, SIGNAL(clicked()), this, SLOT(upSwapFilters()) );
+    connect(dwSwapFilter, SIGNAL(clicked()), this, SLOT(dwSwapFilters()) );
 
     if( _isPlaying == true ) return;
     drawNextFrame();
@@ -580,8 +593,8 @@ void PlayerInterface::resetFilters(){
 
 void PlayerInterface::deleteFilter() {
     // get a pointer to the signal sender, so that we know which filter should be deleted
-    QPushButton *obj = (QPushButton*) sender();
-    int filterIdx = (obj->property("filterIdx")).toInt();
+    QWidget *item = (QWidget*) sender();
+    int filterIdx = deleteFiltersVBox->indexOf(item);
 
     // deleting the corresponding filter from chosenFilter
     vector<int>::iterator it = chosenFilters.begin();
@@ -597,5 +610,44 @@ void PlayerInterface::deleteFilter() {
     layoutItem = deleteFiltersVBox->takeAt(filterIdx);
     delete layoutItem->widget();
     delete layoutItem;
+
+    // deleting the corresponding filter from the goupeBox of QPushButton
+    layoutItem = upSwapVBox->takeAt(filterIdx);
+    delete layoutItem->widget();
+    delete layoutItem;
+
+    layoutItem = dwSwapVBox->takeAt(filterIdx);
+    delete layoutItem->widget();
+    delete layoutItem;
+}
+
+void PlayerInterface::upSwapFilters() {
+    QWidget *widget = (QWidget*) sender();
+    int currentIdx = upSwapVBox->indexOf(widget);
+    widget = NULL;
+
+    // we don't move an element located in the top of the list
+    if (currentIdx) {
+        // takeAt doesn't work in this case, itemAt should be used
+        QLabel *currentButton = (QLabel*) (chosenFiltersVBox->itemAt(currentIdx)->widget());
+        QLabel *prevButton    = (QLabel*) chosenFiltersVBox->itemAt(currentIdx-1)->widget();
+
+        QString currentText = currentButton->text();
+        QString prevText    = prevButton   ->text();
+
+        currentButton->setText(prevText);
+        prevButton   ->setText(currentText);
+
+        currentButton = NULL;
+        prevButton    = NULL;
+
+        swap(chosenFilters[currentIdx], chosenFilters[currentIdx-1]);
+    }
+}
+
+
+void PlayerInterface::dwSwapFilters() {
+    QWidget *item = (QWidget*) sender();
+    int filterIdx = dwSwapVBox->indexOf(item);
 
 }

@@ -139,6 +139,8 @@ class PlayerInterface : public QWidget
     ////////////////////// to be discarded
     QVBoxLayout *chosenFiltersVBox;
     QVBoxLayout *deleteFiltersVBox;
+    QVBoxLayout *upSwapVBox;
+    QVBoxLayout *dwSwapVBox;
 
     QHBoxLayout *chosenFiltersHBox;
 
@@ -207,7 +209,10 @@ public slots:
     void unlockFrameRate();
 
     void stepOneFrame();
+
     void deleteFilter();
+    void upSwapFilters();
+    void dwSwapFilters();
     void resetFilters();
 };
 
