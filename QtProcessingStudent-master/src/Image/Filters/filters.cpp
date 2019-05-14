@@ -53,10 +53,19 @@ void Filters::refreshPrevBuffers(FastImage *bufferIn) {
     ((Blur*) filters[BLUR])->refreshPrevIm(bufferIn);
 }
 
+bool Filters::allFiltersOff() {
+    for(unsigned int i = 0; i < chosenFilters.size(); i ++) {
+        if(chosenFilters[i] >= 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void Filters::filter(FastImage *bufferIn, FastImage *bufferOut) {
     refreshPrevBuffers(bufferIn);
 
-    if(chosenFilters.size() == 0){
+    if(!chosenFilters.size() || allFiltersOff()){
          bufferOut->FastImageCpy(bufferIn);
 
     } else {
@@ -65,13 +74,13 @@ void Filters::filter(FastImage *bufferIn, FastImage *bufferOut) {
 
          for(unsigned int i = 0; i<chosenFilters.size(); i++) {
              fitlerIdx = chosenFilters[i];
-             filters[fitlerIdx]->filter(bufferTmp, bufferOut);
-             bufferTmp = bufferOut;
+             if(fitlerIdx >= 0) {
+                filters[fitlerIdx]->filter(bufferTmp, bufferOut);
+                bufferTmp = bufferOut;
+             }
          }
          bufferTmp = NULL;
     }
-
-
 }
 
 

@@ -158,6 +158,7 @@ PlayerInterface::PlayerInterface()
     QGroupBox   *chosenFiltersWidget = new QGroupBox(tr("My Group Box"));
     chosenFiltersVBox = new QVBoxLayout;
     deleteFiltersVBox = new QVBoxLayout;
+    disableFiltersVBox = new QVBoxLayout;
     upSwapVBox        = new QVBoxLayout;
     dwSwapVBox        = new QVBoxLayout;
 
@@ -166,6 +167,7 @@ PlayerInterface::PlayerInterface()
     chosenFiltersWidget->setLayout(chosenFiltersHBox);
 
     chosenFiltersHBox->addLayout(chosenFiltersVBox);
+    chosenFiltersHBox->addLayout(disableFiltersVBox);
     chosenFiltersHBox->addLayout(deleteFiltersVBox);
     chosenFiltersHBox->addLayout(upSwapVBox);
     chosenFiltersHBox->addLayout(dwSwapVBox);
@@ -419,21 +421,24 @@ void PlayerInterface::changePosition(int newPosition)
 {
     //cout << "(II) Un changement de filtre a ete enregistre... (" << newPosition << ")"  << endl;
     QLabel      *chosenFilter  = new QLabel( _listeFiltres->currentText() );
+    QPushButton *disableFilter = new QPushButton( "disable", this);
     QPushButton *deleteFilter  = new QPushButton( "delete", this);
     QPushButton *upSwapFilter  = new QPushButton( "Up"    , this);
     QPushButton *dwSwapFilter  = new QPushButton( "Down"  , this);
 
-    chosenFiltersVBox->addWidget( chosenFilter  );
-    deleteFiltersVBox->addWidget( deleteFilter  );
-    upSwapVBox       ->addWidget( upSwapFilter  );
-    dwSwapVBox       ->addWidget( dwSwapFilter  );
+    chosenFiltersVBox ->addWidget( chosenFilter  );
+    disableFiltersVBox->addWidget( disableFilter  );
+    deleteFiltersVBox ->addWidget( deleteFilter  );
+    upSwapVBox        ->addWidget( upSwapFilter  );
+    dwSwapVBox        ->addWidget( dwSwapFilter  );
 
     // adding the filter in the chosen filter vector
     chosenFilters.push_back(newPosition);
 
-    connect(deleteFilter, SIGNAL(clicked()), this, SLOT(deleteFilter()) );
-    connect(upSwapFilter, SIGNAL(clicked()), this, SLOT(upSwapFilters()) );
-    connect(dwSwapFilter, SIGNAL(clicked()), this, SLOT(dwSwapFilters()) );
+    connect(disableFilter, SIGNAL(clicked()), this, SLOT(disableFilter()) );
+    connect(deleteFilter,  SIGNAL(clicked()), this, SLOT(deleteFilter()) );
+    connect(upSwapFilter,  SIGNAL(clicked()), this, SLOT(upSwapFilters()) );
+    connect(dwSwapFilter,  SIGNAL(clicked()), this, SLOT(dwSwapFilters()) );
 
     if( _isPlaying == true ) return;
     drawNextFrame();
@@ -534,31 +539,25 @@ void PlayerInterface::stepOneFrame(){
     cout << "(II) FIN PlayerInterface::stepOneFrame()" << endl;
 }
 
+void PlayerInterface::disableFilter() {
+    QWidget *pressedButton = (QWidget*) sender();
+    int filterIdx = disableFiltersVBox->indexOf(pressedButton);
+    pressedButton = NULL;
 
-void PlayerInterface::resetFilters(){
-    if(chosenFilters.size()) {
-        QLayoutItem *item;
-        for(unsigned int i = 0; i<chosenFilters.size(); i++) {
-            item = chosenFiltersVBox->takeAt(0);
-            delete item->widget();
-            delete item;
+    chosenFilters[filterIdx] = -chosenFilters[filterIdx] -1;
 
-            item = deleteFiltersVBox->takeAt(0);
-            delete item->widget();
-            delete item;
-
-            item = upSwapVBox->takeAt(0);
-            delete item->widget();
-            delete item;
-
-            item = dwSwapVBox->takeAt(0);
-            delete item->widget();
-            delete item;
-        }
-        item = NULL;
-        chosenFilters.clear();
+    // Alter texts :
+    QPushButton *tmpButton = (QPushButton*) disableFiltersVBox->itemAt(filterIdx)->widget();
+    if(chosenFilters[filterIdx] < 0) {
+        tmpButton->setText("Enable");
+    } else {
+        tmpButton->setText("Disable");
     }
 }
+
+
+
+
 
 void PlayerInterface::deleteFilter() {
     // get a pointer to the signal sender, so that we know which filter should be deleted
@@ -573,6 +572,11 @@ void PlayerInterface::deleteFilter() {
     // deleting the corresponding filter from the goupeBox of QLabel
     QLayoutItem *layoutItem;
     layoutItem = chosenFiltersVBox->takeAt(filterIdx);
+    delete layoutItem->widget();
+    delete layoutItem;
+
+    // deleting the corresponding filter from the goupeBox of QPushButton
+    layoutItem = disableFiltersVBox->takeAt(filterIdx);
     delete layoutItem->widget();
     delete layoutItem;
 
@@ -640,4 +644,29 @@ void PlayerInterface::dwSwapFilters() {
         swap(chosenFilters[currentIdx], chosenFilters[currentIdx+1]);
     }
 
+}
+
+void PlayerInterface::resetFilters(){
+    if(chosenFilters.size()) {
+        QLayoutItem *item;
+        for(unsigned int i = 0; i<chosenFilters.size(); i++) {
+            item = chosenFiltersVBox->takeAt(0);
+            delete item->widget();
+            delete item;
+
+            item = deleteFiltersVBox->takeAt(0);
+            delete item->widget();
+            delete item;
+
+            item = upSwapVBox->takeAt(0);
+            delete item->widget();
+            delete item;
+
+            item = dwSwapVBox->takeAt(0);
+            delete item->widget();
+            delete item;
+        }
+        item = NULL;
+        chosenFilters.clear();
+    }
 }

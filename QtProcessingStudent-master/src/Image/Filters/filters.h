@@ -93,10 +93,12 @@ public :
     Filters(std::vector<int> &vect);
     ~Filters();
 
+    bool allFiltersOff();
     void refreshPrevBuffers(FastImage *bufferIn);
     void filter(FastImage *bufferIn, FastImage *bufferOut);
 
     // On peut ajouter d'autres méthodes : addFilter, popFilter, insert, swap ..
 };
+
 
 #endif // FILTERS_H
