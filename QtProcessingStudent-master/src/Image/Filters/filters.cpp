@@ -62,6 +62,7 @@ void Filters::filter(FastImage *bufferIn, FastImage *bufferOut) {
     } else {
          int fitlerIdx;
          bufferTmp = bufferIn;
+
          for(unsigned int i = 0; i<chosenFilters.size(); i++) {
              fitlerIdx = chosenFilters[i];
              filters[fitlerIdx]->filter(bufferTmp, bufferOut);

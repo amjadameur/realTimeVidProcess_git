@@ -208,6 +208,7 @@ void FastImage::FastImageCpy(FastImage *f){
     memcpy((void*)image, (void*)f->image, size * sizeof(unsigned char));
 }
 
+
 void FastImage::FastImagePointer(FastImage *src) {
     largeur    = src->width();
     hauteur    = src->height();

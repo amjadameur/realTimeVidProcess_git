@@ -8,7 +8,7 @@ int min(int a, int b) {
 }
 
 bool SamplingFilter::XYOutOfRange(FastImage *bufferIn, int y, int x) {
-    if ((x > bufferIn->width()) || (y > bufferIn->height())) return true;
+    if ((x > bufferIn->width()-1) || (y > bufferIn->height()-1)) return true;
     return false;
 }
 
