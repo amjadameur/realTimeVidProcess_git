@@ -8,8 +8,6 @@ class B0 : public ConvFilter {
 
 public :
     B0();
-
-
 };
 
 #endif // B0F

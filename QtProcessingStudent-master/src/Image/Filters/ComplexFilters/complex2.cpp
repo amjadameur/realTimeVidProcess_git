@@ -1,8 +1,7 @@
 #include "complex2.h"
 
-C2::C2()
-{
-
+C2::C2() {
+    filterName = "C2";
 }
 
 void C2::filter(FastImage *bufferIn, FastImage *bufferOut) {

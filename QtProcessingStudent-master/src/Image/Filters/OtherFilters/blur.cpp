@@ -1,6 +1,8 @@
 #include "blur.h"
 
 Blur::Blur() {
+    filterName = "Blur";
+    cout << filterName << endl;
     prevIm1 = NULL;
     prevIm2 = NULL;
 }

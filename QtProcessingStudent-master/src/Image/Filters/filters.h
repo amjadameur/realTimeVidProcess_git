@@ -87,9 +87,11 @@
 class Filters {
 public :
     FastImage         *bufferTmp;
+    //unsigned int       nbFilters;
     vector<Filter*>    filters;
-    std::vector<int>  &chosenFilters;
+    std::vector<int>   &chosenFilters;
 
+public :
     Filters(std::vector<int> &vect);
     ~Filters();
 

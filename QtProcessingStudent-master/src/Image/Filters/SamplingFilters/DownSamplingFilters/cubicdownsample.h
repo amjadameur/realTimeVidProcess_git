@@ -6,6 +6,7 @@
 class CubicDownSample : public DownSamplingFilter {
 
 public :
+    CubicDownSample();
     virtual void rgbCompute(FastImage* bufferIn, int y, int x);
 };
 

@@ -1,5 +1,9 @@
 #include "lineardownsample.h"
 
+LinearDownSample::LinearDownSample() {
+    filterName = "Linear Down Sample";
+}
+
 void LinearDownSample::rgbCompute(FastImage *bufferIn, int y, int x) {
     if (XYOutOfRange(bufferIn, 2*y+1, 2*x+1)) {
         rVal = imInR(2*y, 2*x);

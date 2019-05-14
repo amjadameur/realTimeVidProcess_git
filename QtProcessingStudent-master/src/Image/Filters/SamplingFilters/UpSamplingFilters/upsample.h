@@ -6,6 +6,7 @@
 class UpSample : public UpSamplingFilter {
 
 public :
+    UpSample();
     virtual void rgbCompute(FastImage* bufferIn, int y, int x);
 };
 

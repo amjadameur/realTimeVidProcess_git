@@ -1,5 +1,9 @@
 #include "cubicupsample.h"
 
+CubicUpSample::CubicUpSample() {
+    filterName = "Cubic Up Sample";
+}
+
 void CubicUpSample::rgbCompute(FastImage *bufferIn, int y, int x) {
     if (XYOutOfRange(bufferIn, y+1, x+1)) {
         rVal = imInR(y, x);

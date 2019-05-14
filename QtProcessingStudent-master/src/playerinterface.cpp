@@ -43,47 +43,17 @@ PlayerInterface::PlayerInterface()
     setLayout(layout);
 
 
+    // allocate filters
+    fastImageFilters = new Filters(chosenFilters);
+
+    string filterName;
+    for(unsigned int i = 0; i < fastImageFilters->filters.size(); i++) {
+        filterName = fastImageFilters->filters[i]->filterName;
+        _listeFiltres->addItem( QString::fromStdString(filterName) );
+    }
     //
     // DECLARATION DE TOUS LES PLUGINS DE TRAITEMENT VIDEO
     //
-    _listeFiltres->addItem( "Red Channel" );
-    _listeFiltres->addItem( "Green Channel" );
-    _listeFiltres->addItem( "Blue Channel" );
-    _listeFiltres->addItem( "Grey Scale" );
-    _listeFiltres->addItem( "Reliable Grey Scale" );
-
-    _listeFiltres->addItem( "Down Sample" );
-    _listeFiltres->addItem( "Linear Down Sample" );
-    _listeFiltres->addItem( "Cubic Down Sample" );
-    _listeFiltres->addItem( "Up Sample" );
-    _listeFiltres->addItem( "Linear Up Sample" );
-    _listeFiltres->addItem( "Cubic Up Sample"); 
-
-    _listeFiltres->addItem( "Blur");
-    _listeFiltres->addItem( "Auto Adapt");
-    _listeFiltres->addItem( "Inverse");
-
-    _listeFiltres->addItem("B0");
-    _listeFiltres->addItem("B1");
-    _listeFiltres->addItem("B2");
-    _listeFiltres->addItem("B3");
-    _listeFiltres->addItem("M0");
-    _listeFiltres->addItem("M1");
-    _listeFiltres->addItem("M2");
-    _listeFiltres->addItem("M3");
-    _listeFiltres->addItem("M4");
-    _listeFiltres->addItem("M5");
-    _listeFiltres->addItem("M6");
-    _listeFiltres->addItem("M7");
-    _listeFiltres->addItem("M8");
-    _listeFiltres->addItem("M9");
-
-
-    _listeFiltres->addItem( "Complex 1");
-    _listeFiltres->addItem( "Complex 2");
-    _listeFiltres->addItem( "Complex 3");
-    _listeFiltres->addItem( "Complex 4");
-
 
 
 
@@ -389,8 +359,7 @@ void PlayerInterface::openFile(QString* name)
     c = new CVideo( fileName.toStdString().c_str() );
     c->start();
 
-    // allocate filters
-    fastImageFilters = new Filters(chosenFilters);
+    //
 
     // ON ACTIVE LES BOUTONS EN CONSEQUENCE
     start->setEnabled( true );

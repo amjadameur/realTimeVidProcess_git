@@ -6,6 +6,7 @@
 class CubicUpSample : public UpSamplingFilter {
 
 public :
+    CubicUpSample();
     virtual void rgbCompute(FastImage* bufferIn, int y, int x);
 };
 

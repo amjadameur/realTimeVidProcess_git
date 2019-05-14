@@ -1,6 +1,7 @@
 #include "complex3.h"
 
 C3::C3(Blur *_blurFilter) {
+    filterName = "C3";
     blurFilter = _blurFilter;
     tmpIn = NULL;
 }

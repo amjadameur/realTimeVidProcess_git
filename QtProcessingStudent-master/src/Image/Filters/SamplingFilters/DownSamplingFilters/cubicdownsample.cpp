@@ -1,5 +1,9 @@
 #include "cubicdownsample.h"
 
+CubicDownSample::CubicDownSample() {
+    filterName = "Cubic Down Sample";
+}
+
 void CubicDownSample::rgbCompute(FastImage *bufferIn, int y, int x) {
     if (XYOutOfRange(bufferIn, 2*y+1, 2*x+1)) {
         rVal = imInR(2*y, 2*x);

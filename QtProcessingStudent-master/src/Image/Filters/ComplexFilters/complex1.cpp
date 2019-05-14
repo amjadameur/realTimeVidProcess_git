@@ -1,6 +1,7 @@
 #include "complex1.h"
 
 C1::C1() {
+    filterName = "C1";
     cubicDownSampleFilter = new CubicDownSample();
 }
 

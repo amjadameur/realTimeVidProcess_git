@@ -6,6 +6,7 @@
 class LinearUpSample : public UpSamplingFilter {
 
 public :
+    LinearUpSample();
     virtual void rgbCompute(FastImage* bufferIn, int y, int x);
 };
 

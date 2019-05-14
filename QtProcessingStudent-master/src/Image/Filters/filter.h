@@ -21,6 +21,9 @@ using namespace std;
 #define tmpOutB(y, x, v) (tmpOut->Blue(y, x, v) )
 
 class Filter {
+public :
+    string filterName;
+
 protected :
     int rVal, gVal, bVal;
 

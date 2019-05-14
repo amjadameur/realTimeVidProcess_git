@@ -1,5 +1,9 @@
 #include "autoadapt.h"
 
+AutoAdapt::AutoAdapt() {
+    filterName = "Auto Adapt";
+}
+
 void AutoAdapt::filter(FastImage *bufferIn, FastImage *bufferOut) {
     int minR, maxR, minG, maxG, minB, maxB;
     minR = imInR(0, 0); maxR = imInR(0, 0);

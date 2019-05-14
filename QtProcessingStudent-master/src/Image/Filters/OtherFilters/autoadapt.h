@@ -6,6 +6,7 @@
 class AutoAdapt : public Filter {
 
 public :
+    AutoAdapt();
     virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };
 

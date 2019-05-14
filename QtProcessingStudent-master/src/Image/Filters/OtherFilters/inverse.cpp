@@ -1,5 +1,9 @@
 #include "inverse.h"
 
+Inverse::Inverse() {
+    filterName = "Inverse";
+}
+
 void Inverse::filter(FastImage *bufferIn, FastImage *bufferOut) {
     for(int y=0; y<bufferIn->height(); y++){
         for(int x=0; x<bufferIn->width(); x++){

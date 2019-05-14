@@ -7,6 +7,7 @@
 class DownSample : public DownSamplingFilter {
 
 public :
+    DownSample();
     virtual void rgbCompute(FastImage* bufferIn, int y, int x);
 };
 

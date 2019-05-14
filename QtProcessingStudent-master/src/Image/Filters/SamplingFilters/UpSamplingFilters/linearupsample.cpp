@@ -1,5 +1,9 @@
 #include "linearupsample.h"
 
+LinearUpSample::LinearUpSample() {
+    filterName = "Linear Up Sample";
+}
+
 void LinearUpSample::rgbCompute(FastImage *bufferIn, int y, int x) {
     if (XYOutOfRange(bufferIn, y+1, x+1)) {
         rVal = imInR(y, x);
