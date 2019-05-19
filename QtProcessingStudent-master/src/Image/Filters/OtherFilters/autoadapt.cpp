@@ -4,8 +4,7 @@ AutoAdapt::AutoAdapt() {
     filterName = "Auto Adapt";
 }
 
-void AutoAdapt::filter(FastImage *bufferIn, FastImage *bufferOut) {
-    int minR, maxR, minG, maxG, minB, maxB;
+void AutoAdapt::findMinMax(FastImage *bufferIn) {
     minR = imInR(0, 0); maxR = imInR(0, 0);
     minG = imInG(0, 0); maxG = imInG(0, 0);
     minB = imInB(0, 0); maxB = imInB(0, 0);
@@ -22,6 +21,11 @@ void AutoAdapt::filter(FastImage *bufferIn, FastImage *bufferOut) {
             if (imInB(y, x) > maxB) maxB = imInB(y, x);
         }
     }
+}
+
+void AutoAdapt::filter(FastImage *bufferIn, FastImage *bufferOut) {
+
+    findMinMax(bufferIn);
 
     for(int y=0; y<bufferIn->height(); y++){
         for(int x=0; x<bufferIn->width(); x++){

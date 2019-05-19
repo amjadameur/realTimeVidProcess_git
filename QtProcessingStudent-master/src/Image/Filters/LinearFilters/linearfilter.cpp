@@ -1,13 +1,6 @@
 #include "linearfilter.h"
 
 
-void LinearFilter::initCoeffs(void) {
-    for (int i = 0; i<3; i++) {
-        for (int j = 0; j<3; j++) {
-            coeffs[i][j] = 0;
-        }
-    }
-}
 
 void LinearFilter::setCoeffs(double _coeffs[][3]) {
     for (int i = 0; i<3; i++) {
@@ -20,7 +13,6 @@ void LinearFilter::setCoeffs(double _coeffs[][3]) {
 
 LinearFilter::LinearFilter()  {
     coeffs = new double[3][3];
-    initCoeffs();
 }
 
 

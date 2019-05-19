@@ -13,7 +13,6 @@ public :
 
     virtual ~LinearFilter();
 
-    void initCoeffs(void);
     void setCoeffs(double _Coeffs[][3]);
 
     virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
