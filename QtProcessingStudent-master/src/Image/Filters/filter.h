@@ -25,6 +25,7 @@ public :
     string filterName;
 
 protected :
+    unsigned char  rIn, gIn, bIn;
     unsigned char rOut, gOut, bOut;
 
 public :

@@ -1,13 +1,5 @@
 #include "linearfilter.h"
 
-
-LinearFilter::LinearFilter()  {
-}
-
-
-LinearFilter::~LinearFilter() {
-}
-
 void LinearFilter::rgbCompute() {
     // méthode traduisant le cas général d'un filtrage linéaire, elle serait redéfinie par les canaux RGB
     ptrIn++;        // bypass alpha component
