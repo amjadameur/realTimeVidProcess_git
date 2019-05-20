@@ -52,6 +52,8 @@ int FastImage::width(){
     return largeur;
 }
 
+
+
 void FastImage::resize(int _height, int _width){
     //
     // ON VERIFIE LE BESOIN DE REDIMENSIONNEMENT DE L'IMAGE
@@ -107,7 +109,7 @@ int FastImage::Blue (int y, int x){
 }
 
 int FastImage::Alpha(int y, int x){
-        return image[4*x + line_width * y + 4];
+        return image[4*x + line_width * y + 3];
 }
 
 void FastImage::Alpha(int y, int x, int v){
@@ -115,7 +117,7 @@ void FastImage::Alpha(int y, int x, int v){
       //      cout << "(EE) Alpha(int,int) X(" << x << ") is bigger than image (" << width() << "x" << height() << ")" << endl;
             exit(0);
         }
-        image[4*x + line_width * y + 4] = Limit(v);
+        image[4*x + line_width * y + 3] = Limit(v);
 }
 
 void FastImage::FastImageFill(IplImage* frame){

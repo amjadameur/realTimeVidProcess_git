@@ -1,3 +1,4 @@
+
 #ifndef FILTERS_H
 #define FILTERS_H
 
@@ -22,6 +23,7 @@
 #include "OtherFilters/autoadapt.h"
 #include "OtherFilters/inverse.h"
 
+
 // Conv Filters
 #include "ConvFilters/Convfilter.h"
 #include "ConvFilters/B0.h"
@@ -45,55 +47,24 @@
 #include "ComplexFilters/complex3.h"
 #include "ComplexFilters/complex4.h"
 
-#define  RED                   0
-#define  GREEN                 1
-#define  BLUE                  2
-#define  GREY                  3
-#define  RELIABLEGREY          4
-
-#define  DWSAMPLE              5
-#define  LINEARDWSAMPLE        6
-#define  CUBICDWSAMPLE         7
-#define  UPSAMPLE              8
-#define  LINEARUPSAMPLE        9
-#define  CUBICUPSAMPLE        10
-
-#define  BLUR                 11
-#define  AUTOADAPT            12
-#define  INVERSE              13
-
-#define  CONVB0               14
-#define  CONVB1               15
-#define  CONVB2               16
-#define  CONVB3               17
-#define  CONVM0               18
-#define  CONVM1               19
-#define  CONVM2               20
-#define  CONVM3               21
-#define  CONVM4               22
-#define  CONVM5               23
-#define  CONVM6               24
-#define  CONVM7               25
-#define  CONVM8               26
-#define  CONVM9               27
-
-#define  COMPLEX1             28
-#define  COMPLEX2             29
-#define  COMPLEX3             30
-#define  COMPLEX4             31
-
-#define  NB_FILTERS           32
+// Fast Filters
+#include "FastRGB/fastred.h"
+#include "FastRGB/fastgreen.h"
+#include "FastRGB/fastblue.h"
 
 class Filters {
 public :
     FastImage         *bufferTmp;
-    //unsigned int       nbFilters;
+    unsigned int       nbFilters;
     vector<Filter*>    filters;
     std::vector<int>   &chosenFilters;
+    Filter *blurPtr;
 
 public :
     Filters(std::vector<int> &vect);
     ~Filters();
+
+    //unsigned int nbFilters() {}
 
     bool allFiltersOff();
     void refreshPrevBuffers(FastImage *bufferIn);

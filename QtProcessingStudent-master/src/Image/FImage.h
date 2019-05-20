@@ -18,8 +18,6 @@ using namespace std;
 
 class FastImage{
 private:
-        int taille;
-
         int largeur;
         int hauteur;
 
@@ -41,6 +39,7 @@ public:
 
         int width();
         int height();
+
         void resize(int _height, int _width);
         void RGB(int y, int x, int r, int g, int b);
         int  Red(int y, int x);

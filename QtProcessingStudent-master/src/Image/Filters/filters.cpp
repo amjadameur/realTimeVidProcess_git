@@ -18,6 +18,8 @@ Filters::Filters(vector<int> &vect) : chosenFilters(vect) {
     filters.push_back(new CubicUpSample());
 
     filters.push_back(new Blur());
+    blurPtr = filters[filters.size()-1]; // utile pour l'affecter au filtre C3 après
+
     filters.push_back(new AutoAdapt());
     filters.push_back(new Inverse());
 
@@ -38,19 +40,25 @@ Filters::Filters(vector<int> &vect) : chosenFilters(vect) {
 
     filters.push_back(new C1());
     filters.push_back(new C2());
-    filters.push_back(new C3((Blur*)  filters[BLUR]));
+    filters.push_back(new C3((Blur*)  blurPtr));
     filters.push_back(new C4());
+
+    filters.push_back(new FastRed());
+    filters.push_back(new FastGreen());
+    filters.push_back(new FastBlue());
+
+    nbFilters = filters.size();
 }
 
 Filters::~Filters() {
-    for(int i = 0; i < NB_FILTERS; i++) {
+    for(unsigned int i = 0; i < filters.size(); i++) {
         delete filters[i];
         filters.pop_back();
     }
 }
 
 void Filters::refreshPrevBuffers(FastImage *bufferIn) {
-    ((Blur*) filters[BLUR])->refreshPrevIm(bufferIn);
+    ((Blur*) blurPtr)->refreshPrevIm(bufferIn);
 }
 
 bool Filters::allFiltersOff() {

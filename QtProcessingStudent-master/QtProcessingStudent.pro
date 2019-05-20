@@ -55,7 +55,11 @@ HEADERS += src/playerinterface.h \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsample.h \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsamplingfilter.h \
     src/Image/Filters/SamplingFilters/samplingfilter.h \
-    src/Image/Filters/filters.h
+    src/Image/Filters/filters.h \
+    src/Image/Filters/FastRGB/fastrgb.h \
+    src/Image/Filters/FastRGB/fastred.h \
+    src/Image/Filters/FastRGB/fastgreen.h \
+    src/Image/Filters/FastRGB/fastblue.h
 
 
 
@@ -102,7 +106,11 @@ SOURCES += src/playerinterface.cpp \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsample.cpp \
     src/Image/Filters/SamplingFilters/UpSamplingFilters/upsamplingfilter.cpp \
     src/Image/Filters/SamplingFilters/samplingfilter.cpp \
-    src/Image/Filters/filters.cpp
+    src/Image/Filters/filters.cpp \
+    src/Image/Filters/FastRGB/fastrgb.cpp \
+    src/Image/Filters/FastRGB/fastred.cpp \
+    src/Image/Filters/FastRGB/fastgreen.cpp \
+    src/Image/Filters/FastRGB/fastblue.cpp
 
 
 
