@@ -4,16 +4,22 @@ Inverse::Inverse() {
     filterName = "Inverse";
 }
 
-void Inverse::filter(FastImage *bufferIn, FastImage *bufferOut) {
-    for(int y=0; y<bufferIn->height(); y++){
-        for(int x=0; x<bufferIn->width(); x++){
-            rVal = 255 - imInR(y,x);
-            gVal = 255 - imInG(y,x);
-            bVal = 255 - imInB(y,x);
+void Inverse::filter(FastImage *bufferIn, FastImage *bufferOut) {    
+    unsigned char *ptrIn  = (unsigned char*) bufferIn->image;
+    unsigned int  *ptrOut = (unsigned int*) bufferOut->image;
 
-            imOutR(y, x, rVal);
-            imOutG(y, x, gVal);
-            imOutB(y, x, bVal);
-        }
+    unsigned int size = bufferIn->height()*bufferIn->width();
+
+    while(size--) {
+        ptrIn++ ; // bypass alpha component
+        rIn = *ptrIn++;
+        gIn = *ptrIn++;
+        bIn = *ptrIn++;
+
+        rOut = 255 - rIn;
+        gOut = 255 - gIn;
+        bOut = 255 - bIn;
+
+        *ptrOut++ = (0xFF << 24) | (rOut << 16) | (gOut << 8) | (bOut);
     }
 }

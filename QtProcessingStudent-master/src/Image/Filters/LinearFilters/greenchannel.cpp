@@ -2,9 +2,11 @@
 
 GreenChannel::GreenChannel() : LinearFilter() {
     filterName = "Green Channel";
-    double greenKernel[] = {0, 0, 0,
-                            0, 1, 0,
-                            0, 0, 0};
-    setCoeffs(greenKernel);
 }
 
+void GreenChannel::rgbCompute() {
+
+    *ptrOut++ = (*(unsigned int*) ptrIn) & 0xFF00FF00;
+
+    ptrIn += 4;
+}

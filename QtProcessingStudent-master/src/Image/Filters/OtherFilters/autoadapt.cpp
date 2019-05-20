@@ -29,13 +29,13 @@ void AutoAdapt::filter(FastImage *bufferIn, FastImage *bufferOut) {
 
     for(int y=0; y<bufferIn->height(); y++){
         for(int x=0; x<bufferIn->width(); x++){
-            rVal = (int) (255*(imInR(y, x)-minR))/(maxR-minR);
-            gVal = (int) (255*(imInG(y, x)-minG))/(maxG-minG);
-            bVal = (int) (255*(imInB(y, x)-minB))/(maxB-minB);
+            rOut = (int) (255*(imInR(y, x)-minR))/(maxR-minR);
+            gOut = (int) (255*(imInG(y, x)-minG))/(maxG-minG);
+            bOut = (int) (255*(imInB(y, x)-minB))/(maxB-minB);
 
-            imOutR(y, x, rVal);
-            imOutG(y, x, gVal);
-            imOutB(y, x, bVal);
+            imOutR(y, x, rOut);
+            imOutG(y, x, gOut);
+            imOutB(y, x, bOut);
         }
     }
 }

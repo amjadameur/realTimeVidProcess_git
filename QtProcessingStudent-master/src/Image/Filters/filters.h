@@ -47,10 +47,7 @@
 #include "ComplexFilters/complex3.h"
 #include "ComplexFilters/complex4.h"
 
-// Fast Filters
-#include "FastRGB/fastred.h"
-#include "FastRGB/fastgreen.h"
-#include "FastRGB/fastblue.h"
+
 
 class Filters {
 public :

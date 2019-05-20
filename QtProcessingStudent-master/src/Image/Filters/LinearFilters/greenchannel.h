@@ -7,7 +7,7 @@ class GreenChannel : public LinearFilter {
 
 public :
     GreenChannel();
-
+    virtual void rgbCompute();
 };
 
 

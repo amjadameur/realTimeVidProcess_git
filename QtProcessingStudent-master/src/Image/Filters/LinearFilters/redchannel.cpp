@@ -2,10 +2,11 @@
 
 RedChannel::RedChannel() : LinearFilter() {
     filterName = "Red Channel";
-    double redKernel[] = {1, 0, 0,
-                          0, 0, 0,
-                          0, 0, 0};
-    setCoeffs(redKernel);
 }
 
+void RedChannel::rgbCompute() {
 
+    *ptrOut++ = (*(unsigned int*) ptrIn) & 0xFFFF0000;
+
+    ptrIn += 4;
+}

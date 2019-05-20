@@ -7,7 +7,7 @@ class RedChannel : public LinearFilter {
 
 public :
     RedChannel();
-
+    virtual void rgbCompute();
 };
 
 

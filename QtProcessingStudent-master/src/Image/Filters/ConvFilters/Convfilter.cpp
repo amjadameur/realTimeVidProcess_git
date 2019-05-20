@@ -30,33 +30,33 @@ void ConvFilter::filter(FastImage* bufferIn, FastImage* bufferOut) {
     for(int y = 0; y < height; y++)
         for(int x= 0; x< width; x++)
         {
-            rVal = 0; gVal = 0; bVal = 0;
-
             if(XYOutOfRange(x, y, width, height)) {
-                rVal = imInR(y, x);
-                gVal = imInG(y, x);
-                bVal = imInB(y, x);
+                rOut = imInR(y, x);
+                gOut = imInG(y, x);
+                bOut = imInB(y, x);
 
-                imOutR(y,x, rVal);
-                imOutG(y,x, gVal);
-                imOutB(y,x, bVal);
+                imOutR(y,x, rOut);
+                imOutG(y,x, gOut);
+                imOutB(y,x, bOut);
 
             } else {
+                rOut = 0; gOut = 0; bOut = 0;
+
                 for(int i = 0; i<3; i++) {
                     for(int j = 0; j<3; j++) {
-                        rVal += matrix[i][j] * imInR(y+i-1, x+j-1);
-                        gVal += matrix[i][j] * imInG(y+i-1, x+j-1);
-                        bVal += matrix[i][j] * imInB(y+i-1, x+j-1);
+                        rOut += matrix[i][j] * imInR(y+i-1, x+j-1);
+                        gOut += matrix[i][j] * imInG(y+i-1, x+j-1);
+                        bOut += matrix[i][j] * imInB(y+i-1, x+j-1);
                     }
                 }
 
-                rVal = (int) rVal/coeff;
-                gVal = (int) gVal/coeff;
-                bVal = (int) bVal/coeff;
+                rOut = rOut/coeff;
+                gOut = gOut/coeff;
+                bOut = bOut/coeff;
 
-                imOutR(y,x, rVal);
-                imOutG(y,x, gVal);
-                imOutB(y,x, bVal);
+                imOutR(y, x, rOut);
+                imOutG(y, x, gOut);
+                imOutB(y, x, bOut);
 
             }
         }

@@ -8,7 +8,7 @@ class BlueChannel : public LinearFilter {
 
 public :
     BlueChannel();
-
+    virtual void rgbCompute();
 };
 
 

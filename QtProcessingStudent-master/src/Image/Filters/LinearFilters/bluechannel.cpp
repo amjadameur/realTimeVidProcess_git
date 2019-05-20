@@ -2,10 +2,13 @@
 
 BlueChannel::BlueChannel() :  LinearFilter() {
     filterName = "Blue Channel";
-    double blueKernel[] = {0, 0, 0,
-                           0, 0, 0,
-                           0, 0, 1};
-    setCoeffs(blueKernel);
+}
+
+void BlueChannel::rgbCompute() {
+
+    *ptrOut++ = (*(unsigned int*) ptrIn) & 0xFF0000FF;
+
+    ptrIn += 4;
 }
 
 

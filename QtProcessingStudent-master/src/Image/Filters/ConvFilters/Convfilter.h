@@ -6,6 +6,7 @@
 
 class ConvFilter : public Filter {
 protected :
+    int rOut, gOut, bOut;
     int (*matrix)[3];
     int coeff;
 

@@ -43,10 +43,6 @@ Filters::Filters(vector<int> &vect) : chosenFilters(vect) {
     filters.push_back(new C3((Blur*)  blurPtr));
     filters.push_back(new C4());
 
-    filters.push_back(new FastRed());
-    filters.push_back(new FastGreen());
-    filters.push_back(new FastBlue());
-
     nbFilters = filters.size();
 }
 
