@@ -51,7 +51,7 @@
 
 class Filters {
 public :
-    FastImage         *bufferTmp;
+    FastImage         *buffOutptr;
     unsigned int       nbFilters;
     vector<Filter*>    filters;
     std::vector<int>   &chosenFilters;
@@ -65,6 +65,7 @@ public :
 
     bool allFiltersOff();
     void refreshPrevBuffers(FastImage *bufferIn);
+
     void filter(FastImage *bufferIn, FastImage *bufferOut);
 
     // On peut ajouter d'autres méthodes : addFilter, popFilter, insert, swap ..

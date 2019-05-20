@@ -1,7 +1,7 @@
 #include "filters.h"
 
 Filters::Filters(vector<int> &vect) : chosenFilters(vect) {
-    bufferTmp = NULL;
+    buffOutptr = NULL;
 
     filters.push_back(new RedChannel());
     filters.push_back(new GreenChannel());
@@ -58,6 +58,7 @@ void Filters::refreshPrevBuffers(FastImage *bufferIn) {
 }
 
 bool Filters::allFiltersOff() {
+    // vérifie si les filtres séléctionnés par l'utilisateur sont tous désactivés
     for(unsigned int i = 0; i < chosenFilters.size(); i ++) {
         if(chosenFilters[i] >= 0) {
             return false;
@@ -74,16 +75,16 @@ void Filters::filter(FastImage *bufferIn, FastImage *bufferOut) {
 
     } else {
          int fitlerIdx;
-         bufferTmp = bufferIn;
+         buffOutptr = bufferIn;
 
          for(unsigned int i = 0; i<chosenFilters.size(); i++) {
              fitlerIdx = chosenFilters[i];
              if(fitlerIdx >= 0) {
-                filters[fitlerIdx]->filter(bufferTmp, bufferOut);
-                bufferTmp = bufferOut;
+                filters[fitlerIdx]->filter(buffOutptr, bufferOut);
+                buffOutptr = bufferOut;
              }
          }
-         bufferTmp = NULL;
+         buffOutptr = NULL;
     }
 }
 

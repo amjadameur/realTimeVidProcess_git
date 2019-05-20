@@ -518,9 +518,9 @@ void PlayerInterface::disableFilter() {
     // Alter texts :
     QPushButton *tmpButton = (QPushButton*) disableFiltersVBox->itemAt(filterIdx)->widget();
     if(chosenFilters[filterIdx] < 0) {
-        tmpButton->setText("Enable");
-    } else {
         tmpButton->setText("Disable");
+    } else {
+        tmpButton->setText("Enable");
     }
 }
 
