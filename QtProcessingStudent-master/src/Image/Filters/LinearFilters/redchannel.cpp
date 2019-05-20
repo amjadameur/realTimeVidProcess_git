@@ -2,7 +2,9 @@
 
 RedChannel::RedChannel() : LinearFilter() {
     filterName = "Red Channel";
-    double redKernel[][3] = {{1, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+    double redKernel[] = {1, 0, 0,
+                          0, 0, 0,
+                          0, 0, 0};
     setCoeffs(redKernel);
 }
 

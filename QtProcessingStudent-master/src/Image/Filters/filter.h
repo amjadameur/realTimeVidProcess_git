@@ -12,20 +12,20 @@ using namespace std;
 #define imInG(y, x)      (bufferIn->Green(y, x))
 #define imInB(y, x)      (bufferIn->Blue(y, x))
 
-#define imOutR(y, x, v)  (bufferOut->Red(y, x, v)  )
-#define imOutG(y, x, v)  (bufferOut->Green(y, x, v))
-#define imOutB(y, x, v)  (bufferOut->Blue(y, x, v) )
+#define imOutR(y, x, v)  (bufferOut->Red(y, x, (int) v)  )
+#define imOutG(y, x, v)  (bufferOut->Green(y, x, (int) v))
+#define imOutB(y, x, v)  (bufferOut->Blue(y, x, (int) v) )
 
-#define tmpOutR(y, x, v) (tmpOut->Red(y, x, v)  )
-#define tmpOutG(y, x, v) (tmpOut->Green(y, x, v))
-#define tmpOutB(y, x, v) (tmpOut->Blue(y, x, v) )
+#define tmpOutR(y, x, v) (tmpOut->Red(y, x, (int) v)  )
+#define tmpOutG(y, x, v) (tmpOut->Green(y, x, (int) v))
+#define tmpOutB(y, x, v) (tmpOut->Blue(y, x, (int) v) )
 
 class Filter {
 public :
     string filterName;
 
 protected :
-    int rVal, gVal, bVal;
+    unsigned char rVal, gVal, bVal;
 
 public :
     virtual void filter(FastImage *bufferIn, FastImage *bufferOut) = 0;

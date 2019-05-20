@@ -5,7 +5,7 @@
 
 class LinearFilter : public Filter {
 protected :
-    double (*coeffs)[3];
+    double *coeffs;
 
 public :
 
@@ -13,7 +13,7 @@ public :
 
     virtual ~LinearFilter();
 
-    void setCoeffs(double _Coeffs[][3]);
+    void setCoeffs(double *coeffs);
 
     virtual void filter(FastImage* bufferIn, FastImage* bufferOut);
 };

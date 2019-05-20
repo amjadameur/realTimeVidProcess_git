@@ -2,17 +2,15 @@
 
 
 
-void LinearFilter::setCoeffs(double _coeffs[][3]) {
-    for (int i = 0; i<3; i++) {
-        for (int j = 0; j<3; j++) {
-            coeffs[i][j] = _coeffs[i][j];
-        }
+void LinearFilter::setCoeffs(double *coeffs) {
+    for (int i = 0; i<9; i++) {
+        this->coeffs[i] = coeffs[i];
     }
 }
 
 
 LinearFilter::LinearFilter()  {
-    coeffs = new double[3][3];
+    coeffs = new double[9];
 }
 
 
@@ -21,17 +19,23 @@ LinearFilter::~LinearFilter() {
 }
 
 void LinearFilter::filter(FastImage* bufferIn, FastImage* bufferOut) {
-    //unsigned char rIn, gIn, bIn;
-    for(int y=0; y<bufferIn->height(); y++){
-        for(int x=0; x<bufferIn->width(); x++){
-            rVal = (int) coeffs[0][0]*imInR(y,x) + coeffs[0][1]*imInG(y,x) + coeffs[0][2]*imInB(y,x);
-            gVal = (int) coeffs[1][0]*imInR(y,x) + coeffs[1][1]*imInG(y,x) + coeffs[1][2]*imInB(y,x);
-            bVal = (int) coeffs[2][0]*imInR(y,x) + coeffs[2][1]*imInG(y,x) + coeffs[2][2]*imInB(y,x);
+    unsigned char rIn, gIn, bIn;
+    unsigned char *ptrIn  = (unsigned char*) bufferIn->image;
+    unsigned int  *ptrOut = (unsigned int*) bufferOut->image;
 
-            imOutR(y, x, rVal);
-            imOutG(y, x, gVal);
-            imOutB(y, x, bVal);
-        }
+    unsigned int size = bufferIn->height()*bufferIn->width();
+
+    while(size--) {
+        ptrIn++ ; // bypass alpha component
+        rIn = *ptrIn++;
+        gIn = *ptrIn++;
+        bIn = *ptrIn++;
+
+        rVal = coeffs[0]*rIn + coeffs[1]*gIn + coeffs[2]*bIn;
+        gVal = coeffs[3]*rIn + coeffs[4]*gIn + coeffs[5]*bIn;
+        bVal = coeffs[6]*rIn + coeffs[7]*gIn + coeffs[8]*bIn;
+
+        *ptrOut++ = (0xFF << 24) | (rVal << 16) | (gVal << 8) | (bVal);
     }
 }
 
