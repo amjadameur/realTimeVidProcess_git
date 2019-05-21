@@ -125,7 +125,7 @@ PlayerInterface::PlayerInterface()
 
 
     ////////////////////////////////////////////////////////////////
-    QGroupBox   *chosenFiltersWidget = new QGroupBox(tr("My Group Box"));
+    QGroupBox   *chosenFiltersWidget = new QGroupBox(tr("Chosen Filters"));
     chosenFiltersVBox = new QVBoxLayout;
     deleteFiltersVBox = new QVBoxLayout;
     disableFiltersVBox = new QVBoxLayout;
@@ -392,8 +392,8 @@ void PlayerInterface::changePosition(int newPosition)
     QLabel      *chosenFilter  = new QLabel( _listeFiltres->currentText() );
     QPushButton *disableFilter = new QPushButton( "disable", this);
     QPushButton *deleteFilter  = new QPushButton( "delete", this);
-    QPushButton *upSwapFilter  = new QPushButton( "Up"    , this);
-    QPushButton *dwSwapFilter  = new QPushButton( "Down"  , this);
+    QPushButton *upSwapFilter  = new QPushButton( "up"    , this);
+    QPushButton *dwSwapFilter  = new QPushButton( "down"  , this);
 
     chosenFiltersVBox ->addWidget( chosenFilter  );
     disableFiltersVBox->addWidget( disableFilter  );
@@ -518,9 +518,9 @@ void PlayerInterface::disableFilter() {
     // Alter texts :
     QPushButton *tmpButton = (QPushButton*) disableFiltersVBox->itemAt(filterIdx)->widget();
     if(chosenFilters[filterIdx] < 0) {
-        tmpButton->setText("Disable");
+        tmpButton->setText("enable");
     } else {
-        tmpButton->setText("Enable");
+        tmpButton->setText("disable");
     }
 }
 
